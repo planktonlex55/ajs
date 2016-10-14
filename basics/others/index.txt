@@ -1,0 +1,72 @@
+python scripting:-
+
+> Python setup in fedora
+> Python setup in windows
+> Data types -- very detailed
+> variable interpolation
+> Debugger
+> installing pychecker and other softwares
+> concatenation
+> string operations
+> operators 
+> loops
+> in built functions 
+> in built functions for strings
+> file handling
+> ARGV in python
+> arguments with spaces
+> chomp, chop
+> substr
+> array slices
+> while <> in python. STDIN
+> here doc
+> import, from import etc.
+> eg. of semaphore
+> time functions
+> python n excel
+> py n mails
+> py n ftp
+> how to read module doc
+> perldoc perlfunc equivalent
+> data dumper in py
+> executing os commands
+> fork in py (skip i think)
+> py regex
+> filepaths in py
+> how to write a module
+> error handling in python
+
+
+Functions
+> function params
+> passing arrays to functions
+> @_ equivalent
+> return in py 
+
+
+oops
+> classes n objects
+> super
+> inheritance
+> function overloading
+> operator overloading
+> public n protected n private
+> instance methods, class methods
+> instance vars, class vars
+> closure in python
+> static in python?
+> autoload in python?
+> calling a function that does not exist in python?
+> overriding
+> singleton object
+
+
+Database
+> mysql db
+> nosql db + Robomongo installation steps
+
+
+Test scripts
+> Writing more than one module in python
+> py communities
+> pycharm ide

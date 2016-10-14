@@ -1,0 +1,2058 @@
+what version of python have u worked on? 2.7 
+difference between the versions
+
+how to write an infite for loop in python?
+how to write an infinite for loop using the operators in the for loop?
+data structures in python
+
+symbol table in python
+popular inbuilt function in python
+"""
+calling a method which does not exist in python
+
+class in python
+inheritance in python
+------------------------------------------------------------------
+top 10 python modules to know.
+
+http://www.discoversdk.com/blog/10-interesting-python-modules-to-learn-in-2016?gclid=CIrrq5i7gc8CFcOOaAodZ6MOVQ
+
+
+----
+
+1. data structures in python:-
+variables can be assigned 
+- numerical, float, string,etc.
+- list [] -- their elements & size can be changed, 
+- tuples () -- they r read only list, dictionary 
+elements begin index from 0 (like in perl arrays).
+- dictionary {} -- its key can be anything .
+eg. dict = {}
+	dict ['one']  = '';
+	dict [2] = 'two';
+dict.keyss
+dict.values 
+
+---------
+
+2. 
+arithmetic operators: +, -, *, /, **(to the power), // (floor division)
+comparison operators:  ==, !=, <> (same as !=), > , <, >=, <=
+assignment operators:  =, +=, -=, *=, /= , %= , //= 
+bitwise operators: &, | , ^ (binary xor), ~ (complement), << (binary left shift), >> (binary right shift).
+logical operators: and, or, not.
+
+membership operators: in, not in 
+x in y, here in results in a 1 if x is a member of sequence y.
+x not in y, here not in results in a 1 if x is not a member of sequence y.
+
+identity operators: is, is not
+Identity operators compare the memory locations of two objects.
+x is y, here is results in 1 if id(x) equals id(y).
+x is not y, here is not results in 1 if id(x) is not equal to id(y).
+
+Note: + is an identity operator. so ++x is interpreted as +(+x) i.e. +x which is x.
+integers are immutable in python.
+
+--------
+
+mutable vs immutable 
+
+The following are immutable objects:
+
+    Numeric types: int, float, complex
+    string
+    tuple
+    frozen set
+    bytes
+
+The following objects are mutable:
+
+    list
+    dict
+    set
+    byte array
+
+https://codehabitude.com/2013/12/24/python-objects-mutable-vs-immutable/
+
+ For instance, the following code is a straightforward solution to concatenate a string together:
+	
+string_build = "";
+for data in container:
+    string_build += str(data)
+print(string_build)
+
+But in reality, it is extremely inefficient. Because strings are immutable, concatenating two strings together actually creates a third string which is a combination of the previous two. If you are iterating a lot and building a large string, you will waste a lot of memory creating and throwing away objects. Also, do not forget that nearing the end of the iteration you will be allocating and throwing away very large string objects which is even more costly.
+
+The following is a more efficient and pythonic method:
+	
+builder_list = []
+for data in container:
+    builder_list.append(str(data))
+"".join(builder_list)
+ 
+### My favorite way is to use a generator
+### which is cleaner code and runs faster
+ 
+"".join(str(data) for data in container)	
+
+-------
+regular expressions:-
+https://regexone.com/references/python
+https://regexone.com/lesson/introduction_abcs
+
+-------
+
+Python OOPS
+
+http://www.python-course.eu/object_oriented_programming.php
+
+-------
+imp inbuilt functions
+
+http://www.secnetix.de/olli/Python/doclinks.hawk
+
+https://docs.python.org/2/library/functions.html
+https://docs.python.org/2/library/stdtypes.html#string-methods
+https://docs.python.org/2/reference/datamodel.html#special-method-names
+--------
+
+3. Loops: while, for, nested loops 
+Loop control statements: break, continue, pass
+
+http://www.learnpython.org/en/Loops
+
+--------
+
+import pprint
+
+tasks = []
+
+for x in range(1, 3):
+    dict = {}
+    dict['id'] = 10
+    dict['name'] = 'user1'
+
+    #pprint.pprint (dict);
+    tasks.append (dict)
+
+pprint.pprint (tasks);
+
+
+--------
+
+4. Number data types store numeric values. They are immutable data types, means that changing the value of a number data type results in a newly allocated object.
+Number objects are created when you assign a value to them. For example −
+var1 = 1
+var2 = 10
+
+You can delete a single object or multiple objects by using the del statement. For example:
+del var
+del var_a, var_b
+
+inbuilt math functions:-
+cmp(x, y)
+	-1 if x < y, 
+	0 if x == y, or 
+	1 if x > y 
+	
+fabs(x)
+	The absolute value of x.
+
+max(x1, x2,...)
+	The largest of its arguments: the value closest to positive infinity
+
+min(x1, x2,...)
+	The smallest of its arguments: the value closest to negative infinity 	
+	
+pow(x, y)
+	The value of x**y.
+
+choice(seq)
+	A random item from a list, tuple, or string.
+
+-----------
+
+5. String objs:
+escape sp. chars. \
+
+"""
+Python's triple quotes comes to the rescue by allowing strings to span multiple lines, including verbatim NEWLINEs, TABs, and any other special characters.
+
+#!/usr/bin/python
+
+print 'C:\\nowhere'
+When the above code is executed, it produces the following result −
+C:\nowhere
+	
+Now let's make use of raw string. We would put expression in r'expression' as follows −
+#!/usr/bin/python
+print r'C:\\nowhere'	
+
+find(str, beg=0 end=len(string))
+Determine if str occurs in string or in a substring of string if starting index beg and ending index end are given returns index if found and -1 otherwise.
+
+index(str, beg=0, end=len(string))
+Same as find(), but raises an exception if str not found.
+
+rfind(str, beg=0,end=len(string))
+Same as find(), but search backwards in string.
+
+rindex( str, beg=0, end=len(string))
+Same as index(), but search backwards in string.
+
+rstrip()
+Removes all trailing whitespace of string.
+
+lstrip()
+Removes all leading whitespace in string.
+
+------------
+
+6. 
+list2 = [1, 2, 3, 4, 5, 6, 7 ];
+print list2[0];
+print list2[1-5];
+
+o/p: [2, 3, 4, 5]
+
+del list1[2]; #deleting
+list[2] = 2010 #updating.
+
+
+Python Expression				Results 					Description
+len([1, 2, 3])						3						Length
+[1, 2, 3] + [4, 5, 6]		[1, 2, 3, 4, 5, 6]				Concatenation
+['Hi!'] * 4					['Hi!', 'Hi!', 'Hi!', 'Hi!']	Repetition
+3 in [1, 2, 3]					True						Membership
+for x in [1, 2, 3]: print x,	1 2 3						Iteration
+
+list[-2]	Negative: count from the right
+
+len(list)	Gives the total length of the list.
+max(list)	Returns item from the list with max value.
+min(list)	Returns item from the list with min value.
+list(seq)	Converts a tuple into list.
+
+
+list.append(obj)	Appends object obj to list
+list.count(obj)		Returns count of how many times obj occurs in list
+list.extend(seq)	Appends the contents of seq to list
+list.index(obj)		Returns the lowest index in list that obj appears
+list.insert(index, obj)	Inserts object obj into list at offset index
+list.pop(obj=list[-1])	Removes and returns last object or obj from list
+list.remove(obj)	Removes object obj from list
+list.reverse()		Reverses objects of list in place
+list.sort([func])	Sorts objects of list, use compare func if given
+
+-------------------
+7. 
+tuples' elements cannot be deleted / updated
+dict's elements can be deleted/updated like lists
+
+dict.clear()			Removes all elements of dictionary dict
+dict.copy()				Returns a shallow copy of dictionary dict
+dict.fromkeys()			Create a new dictionary with keys from seq and values set to value.
+dict.get(key, default=None)		For key key, returns value or default if key not in dictionary
+dict.has_key(key)		Returns true if key in dictionary dict, false otherwise
+dict.items()			Returns a list of dict's (key, value) tuple pairs
+dict.keys()				Returns list of dictionary dict's keys
+dict.setdefault(key, default=None)		Similar to get(), but will set dict[key]=default if key is not already in dict
+dict.update(dict2)		Adds dictionary dict2's key-values pairs to dict
+dict.values()			Returns list of dictionary dict's values
+
+--------------------
+http://www.tutorialspoint.com/json/json_python_example.htm
+
+demjson seems to be the module for python and json rest api.
+pip install demjson == done.
+
+--------------------
+
+Data::Dumper has two main uses: data persistence and debugging/inspecting objects. As far as I know, there isn't anything that's going to work exactly the same as Data::Dumper.
+I use pickle for data persistence.
+I use pprint to visually inspect my objects / debug.
+
+http://stackoverflow.com/questions/2540567/is-there-a-python-equivalent-to-perls-datadumper
+
+Possibly a couple of alternatives: pickle, marshal, shelve.
+
+--------------------
+8. function
+
+    def printme( str ):
+   "This prints a passed string into this function"
+   print str
+   return
+   
+Defining a function only gives it a name, specifies the parameters that are to be included in the function and structures the blocks of code.
+Once the basic structure of a function is finalized, you can execute it by calling it from another function or directly from the Python prompt. Following is the example to call printme() function −   
+
+#!/usr/bin/python
+# Function definition is here
+def printme( str ):
+   "This prints a passed string into this function"
+   print str
+   return;
+# Now you can call printme function
+printme("I'm first call to user defined function!")
+printme("Again second call to the same function")
+
+Pass-by-reference:
+All parameters (arguments) in the Python language are passed by reference. It means if you change what a parameter refers to within a function, the change also reflects back in the calling function.
+
+Pass-by-value:
+
+
+
+Argument types:-
+a) required arguments: are the arguments passed to a function in correct positional order. Here, the number of arguments in the function call should match exactly with the function definition.
+b) keyword arguments: Keyword arguments are related to the function calls. When you use keyword arguments in a function call, the caller identifies the arguments by the parameter name.
+Note that the order of parameters does not matter.
+#!/usr/bin/python
+# Function definition is here
+def printinfo( name, age ):
+   "This prints a passed info into this function"
+   print "Name: ", name
+   print "Age ", age
+   return;
+
+# Now you can call printinfo function
+printinfo( age=50, name="miki" )
+
+c) default arguments: A default argument is an argument that assumes a default value if a value is not provided in the function call for that argument.
+def printinfo( name, age = 35 ):
+   "This prints a passed info into this function"
+   print "Name: ", name
+   print "Age ", age
+   return;
+# Now you can call printinfo function
+printinfo( age=50, name="miki" )
+printinfo( name="miki" )
+
+d) variable-length arguments:
+#!/usr/bin/python
+
+# Function definition is here
+def printinfo( arg1, *vartuple ):
+   "This prints a variable passed arguments"
+   print "Output is: "
+   print arg1
+   for var in vartuple:
+      print var
+   return;
+
+# Now you can call printinfo function
+printinfo( 10 )
+printinfo( 70, 60, 50 )
+
+---
+decorators. more on functions:
+http://thecodeship.com/patterns/guide-to-python-function-decorators/
+
+> Assign functions to variables
+def greet(name):
+    return "hello "+name
+
+greet_someone = greet
+print greet_someone("John")
+
+# Outputs: hello John
+
+> Define functions inside other functions
+def greet(name):
+    def get_message():
+        return "Hello "
+
+    result = get_message()+name
+    return result
+
+print greet("John")
+
+# Outputs: Hello John
+
+> Functions can be passed as parameters to other functions
+
+def greet(name):
+   return "Hello " + name 
+
+def call_func(func):
+    other_name = "John"
+    return func(other_name)  
+
+print call_func(greet)
+
+# Outputs: Hello John
+
+
+> Functions can return other functions
+
+def compose_greet_func():
+    def get_message():
+        return "Hello there!"
+
+    return get_message
+
+greet = compose_greet_func()
+print greet()
+
+# Outputs: Hello there!
+
+
+>In other words, functions generating other functions.
+
+
+def compose_greet_func():
+    def get_message():
+        return "Hello there!"
+
+    return get_message
+
+greet = compose_greet_func()
+print greet()
+
+# Outputs: Hello there!
+
+>>> Inner functions have access to the enclosing scope
+More commonly known as a closure. A very powerful pattern that we will come across while building decorators.
+
+Another thing to note, Python only allows read access to the outer scope and not assignment. 
+Notice how we modified the example above to read a "name" argument from the enclosing scope of the inner function and return the new function.
+def compose_greet_func(name):
+    def get_message():
+        return "Hello there "+name+"!"
+
+    return get_message
+
+greet = compose_greet_func("John")
+print greet()
+
+# Outputs: Hello there John!
+
+me: print greet() <<problem for me to identify inbuilt -vs- custom function>>
+
+>>> Composition of Decorators
+
+Function decorators are simply wrappers to existing functions.
+Putting the ideas mentioned above together, we can build a decorator. In this example let's consider a function that wraps the string output of another function by p tags.
+
+def get_text(name):
+   return "lorem ipsum, {0} dolor sit amet".format(name)
+
+def p_decorate(func):
+   def func_wrapper(name):
+       return "<p>{0}</p>".format(func(name))
+   return func_wrapper
+
+my_get_text = p_decorate(get_text)
+
+print my_get_text("John")
+
+# <p>Outputs lorem ipsum, John dolor sit amet</p>
+
+Another thing to notice is that our decorated function takes a name argument. (see types of arguments)
+
+-------------------
+
+9. anonymous functions: These functions are called anonymous because they are not declared in the standard manner by using the def keyword. You can use the lambda keyword to create small anonymous functions.
+	- Lambda functions have their own local namespace and cannot access variables other than those in their parameter list and those in the global namespace.
+	- An anonymous function cannot be a direct call to print because lambda requires an expression
+	
+ollowing is the example to show how lambda form of function works −
+
+#!/usr/bin/python
+# Function definition is here
+sum = lambda arg1, arg2: arg1 + arg2;
+
+# Now you can call sum as a function
+print "Value of total : ", sum( 10, 20 )
+print "Value of total : ", sum( 20, 20 )
+
+When the above code is executed, it produces the following result −
+Value of total :  30
+Value of total :  40	
+
+----
+
+return statement (same as perl).
+
+----
+Local vars: vars in a function
+Global: vars outside a function; but can be accessed even inside a function.
+
+------------------------
+
+10. modules.
+Q. where is the search path where python searches for vars? (@INC in perl).
+
+- import <module> 
+- to import the function fibonacci from the module fib, use the following statement −
+from fib import fibonacci
+- it is also possible to import all names from a module into the current namespace by using the following import statement −
+from modname import *
+
+Locating Modules
+
+When you import a module, the Python interpreter searches for the module in the following sequences −
+    - The current directory.
+    - If the module isn't found, Python then searches each directory in the shell variable PYTHONPATH.
+    - If all else fails, Python checks the default path. On UNIX, this default path is normally /usr/local/lib/python/.
+
+The module search path is stored in the system module sys as the sys.path variable. The sys.path variable contains the current directory, PYTHONPATH, and the installation-dependent default.
+
+https://docs.python.org/2/tutorial/modules.html
+- how to write a module in python
+- how to make a module work as a script.
+			if __name__ == "__main__":
+			import sys
+			fib(int(sys.argv[1]))
+			
+- 6.1.2. The Module Search Path
+When a module named "spam" is imported, the interpreter first searches for a built-in module with that name. If not found, it then searches for a file named spam.py in a list of directories given by the variable sys.path. sys.path is initialized from these locations:
+
+    the directory containing the input script (or the current directory).
+    PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).
+    the installation-dependent default.
+
+After initialization, Python programs can modify sys.path. The directory containing the script being run is placed at the beginning of the search path, ahead of the standard library path. This means that scripts in that directory will be loaded instead of modules of the same name in the library directory. This is an error unless the replacement is intended. See section Standard Modules for more information.
+
+----
+
+The dir( ) Function
+The dir() built-in function returns a sorted list of strings containing the names defined by a module.	
+
+#!/usr/bin/python
+
+# Import built-in module math
+import math
+content = dir(math)
+print content
+When the above code is executed, it produces the following result −
+['__doc__', '__file__', '__name__', 'acos', 'asin', 'atan', 
+'atan2', 'ceil', 'cos', 'cosh', 'degrees', 'e', 'exp', 
+'fabs', 'floor', 'fmod', 'frexp', 'hypot', 'ldexp', 'log',
+'log10', 'modf', 'pi', 'pow', 'radians', 'sin', 'sinh', 
+'sqrt', 'tan', 'tanh']
+Here, the special string variable __name__ is the module's name, and __file__ is the filename from which the module was loaded.
+
+----
+
+The globals() and locals() Functions −
+The globals() and locals() functions can be used to return the names in the global and local namespaces depending on the location from where they are called.
+If locals() is called from within a function, it will return all the names that can be accessed locally from that function.
+If globals() is called from within a function, it will return all the names that can be accessed globally from that function.
+  
+----
+
+The reload() Function
+When the module is imported into a script, the code in the top-level portion of a module is executed only once.
+Therefore, if you want to reexecute the top-level code in a module, you can use the reload() function. The reload() function imports a previously imported module again. The syntax of the reload() function is this −
+reload(module_name)  
+
+----
+
+Packages in Python
+A package is a hierarchical file directory structure that defines a single Python application environment that consists of modules and subpackages and sub-subpackages, and so on.
+
+Consider a file Pots.py available in Phone directory. This file has following line of source code −
+#!/usr/bin/python
+
+def Pots():
+   print "I'm Pots Phone"
+
+Similar way, we have another two files having different functions with the same name as above −
+    Phone/Isdn.py file having function Isdn()
+    Phone/G3.py file having function G3()
+
+Now, create one more file __init__.py in Phone directory −
+    Phone/__init__.py
+
+To make all of your functions available when you've imported Phone, you need to put explicit import statements in __init__.py as follows −
+- from Pots import Pots
+- from Isdn import Isdn
+- from G3 import G3
+
+After you add these lines to __init__.py, you have all of these classes available when you import the Phone package.
+#!/usr/bin/python
+
+# Now import your Phone Package.
+import Phone
+
+Phone.Pots()
+Phone.Isdn()
+Phone.G3()
+
+---------------------
+
+11. 
+
+> The raw_input Function
+The raw_input([prompt]) function reads one line from standard input and returns it as a string (removing the trailing newline).
+#!/usr/bin/python
+str = raw_input("Enter your input: ");
+print "Received input is : ", str
+
+This prompts you to enter any string and it would display same string on the screen. When I typed "Hello Python!", its output is like this −
+Enter your input: Hello Python
+Received input is :  Hello Python
+
+> The input Function
+The input([prompt]) function is equivalent to raw_input, except that it assumes the input is a valid Python expression and returns the evaluated result to you.
+#!/usr/bin/python
+str = input("Enter your input: ");
+print "Received input is : ", str
+This would produce the following result against the entered input −
+Enter your input: [x*5 for x in range(2,10,2)]
+Recieved input is :  [10, 20, 30, 40]
+
+-----------------------
+
+12: File handling:- skipped for now.
+
+-----------------------
+
+12. exceptions:-
+
+Python provides two very important features to handle any unexpected error in your Python programs and to add debugging capabilities in them −
+    Exception Handling: This would be covered in this tutorial. Here is a list standard Exceptions available in Python: Standard Exceptions.
+    Assertions: This would be covered in Assertions in Python tutorial.
+
+List of Standard Exceptions −
+EXCEPTION NAME 										DESCRIPTION
+Exception 							Base class for all exceptions
+StopIteration 						Raised when the next() method of an iterator does not point to any object.
+SystemExit 							Raised by the sys.exit() function.
+StandardError 						Base class for all built-in exceptions except StopIteration and SystemExit.
+ArithmeticError 					Base class for all errors that occur for numeric calculation.
+OverflowError 						Raised when a calculation exceeds maximum limit for a numeric type.
+FloatingPointError				 	Raised when a floating point calculation fails.
+ZeroDivisonError 					Raised when division or modulo by zero takes place for all numeric types.
+AssertionError 						Raised in case of failure of the Assert statement.
+AttributeError 						Raised in case of failure of attribute reference or assignment.
+EOFError 							Raised when there is no input from either the raw_input() or input() function and the end of file is reached.
+ImportError 						Raised when an import statement fails.
+KeyboardInterrupt 					Raised when the user interrupts program execution, usually by pressing Ctrl+c.
+LookupError 						Base class for all lookup errors.
+
+IndexError
+KeyError							Raised when an index is not found in a sequence.
+									Raised when the specified key is not found in the dictionary.
+NameError 	Raised when an identifier is not found in the local or global namespace.
+....
+
+Refer http://www.tutorialspoint.com/python/python_exceptions.htm 
+
+--------------------------------------
+
+13. 
+Handling an exception
+If you have some suspicious code that may raise an exception, you can defend your program by placing the suspicious code in a try: block. After the try: block, include an except: statement, followed by a block of code which handles the problem as elegantly as possible.
+Syntax
+
+Here is simple syntax of try....except...else blocks −
+try:
+   You do your operations here;
+   ......................
+except ExceptionI:
+   If there is ExceptionI, then execute this block.
+except ExceptionII:
+   If there is ExceptionII, then execute this block.
+   ......................
+else:
+   If there is no exception then execute this block. 
+   
+You can also use the except statement with no exceptions
+	execpt: 
+You can also use the same except statement to handle multiple exceptions
+	except(Exception1[, Exception2[,...ExceptionN]]]):
+
+------------------------------------	
+   
+ 14: 
+ The try-finally Clause
+You can use a finally: block along with a try: block. The finally block is a place to put any code that must execute, whether the try-block raised an exception or not. The syntax of the try-finally statement is this −
+
+try:
+   You do your operations here;
+   ......................
+   Due to any exception, this may be skipped.
+finally:
+   This would always be executed.
+   ......................
+   
+---- 
+
+Argument of an Exception
+try:
+   You do your operations here;
+   ......................
+except ExceptionType, Argument:
+   You can print value of Argument here...
+   
+----   
+   
+User-Defined Exceptions : skipped
+
+========================================
+
+Q. http://stackoverflow.com/questions/2372445/is-there-a-python-version-of-cpan
+A. PyPI
+The Python Package Index is a repository of software for the Python programming language. There are currently 9140 packages here. To contact the PyPI admins, please use the Get help or Bug reports links. http://pypi.python.org/pypi
+
+========================================
+Q. How will you convert a String to an object in python?
+eval(str) − Evaluates a string and returns an object.
+Q. How will you convert an object into a regular expression in python ?
+repr(x) − Converts object x to an expression string.
+
+Convert string to tuple:
+tuple(s) − Converts s to a tuple.
+Convert string to list:
+list(s) − Converts s to a list.
+Convert string to a set:
+set(s) − Converts s to a set.
+
+Create a dictionary using tuples in python:
+dict(d) − Creates a dictionary. d must be a sequence of (key,value) tuples.
+
+Q. wth is set?
+wth is frozen set? how r they different from tuple and list?
+A. http://stackoverflow.com/questions/14422409/difference-between-tuples-and-frozensets-in-python
+tuples are immutable lists, frozensets are immutable sets.
+
+tuples are indeed an ordered collection of objects, but they can contain duplicates and unhashable objects, and have slice functionality
+
+frozensets aren't indexed, but you have the functionality of sets - O(1) element lookups, and functionality such as unions and intersections. They also can't contain duplicates, like their mutable counterparts.
+
+@Volatility Also there's another parallel: tuples and frozensets are hashable; lists and sets aren't. 
+
+immutable = read only.
+mutable = can be written into.
+
+do this:-
+http://www.python-course.eu/python3_sets_frozensets.php
+
+------------
+
+We want to show now, what happens, if we pass a tuple with reappearing elements to the set function - in our example the city "Paris":
+
+>>> cities = set(("Paris", "Lyon", "London","Berlin","Paris","Birmingham"))
+>>> cities
+{'Paris', 'Birmingham', 'Lyon', 'London', 'Berlin'}
+>>> 
+
+Though sets can't contain mutable objects, sets are mutable:
+
+>>> cities = set(["Frankfurt", "Basel","Freiburg"])
+>>> cities.add("Strasbourg")
+>>> cities
+{'Freiburg', 'Basel', 'Frankfurt', 'Strasbourg'}
+>>> 
+
+Frozensets are like sets except that they cannot be changed, i.e. they are immutable:
+
+>>> cities = frozenset(["Frankfurt", "Basel","Freiburg"])
+>>> cities.add("Strasbourg")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'frozenset' object has no attribute 'add'
+>>> 
+
+-------------
+
+Flask g object:-
+
+No, g is not an object to hang session data on. g data is not persisted between requests.
+
+session gives you a place to store data per specific browser. As a user of your Flask app, using a specific browser, returns for more requests, the session data is carried over across those requests.
+
+g on the other hand is data shared between different parts of your code base within one request cycle. g can be set up during before_request hooks, is still available during the teardown_request phase and once the request is done and sent out to the client, g is cleared.
+
+
+--------------
+
+
+
+
+
+==========================================
+Variables vs. Identifiers
+The name of a variable is an identifier, but a variable is "more than a name".
+
+Identifiers are case-sensitive!
+Python keywords are not allowed as identifier names! 
+
+No identifier can have the same name as one of the Python keywords:
+and, as, assert, break, class, continue, def, del, elif, else, except, exec, finally, for, from, global, if, import, in, is, lambda, not, or, pass, print, raise, return, try, while, with, yield 
+
+eg.
+>>> x = 3
+>>> y = x	(y is a pointer (not a c-pointer, but a like a link-pointer to the same memory location of x)
+>>> y = 2	(What will happen to the value of x? C programmers will assume that x will be changed to 2 as well, because we said before that y "points" to the location of x. But this is not a C-pointer. Because x and y will not share the same value anymore, y gets his or her own memory location, containing 2 and x sticks to 3, as can be seen in the animated graphics on the right side.)
+
+But what we said before can't be determined by typing in those three lines of code. But how can we prove it? The identity function id() can be used for this purpose. Every instance (object or variable) has an identity, i.e. an integer which is unique within the script or program, i.e. other objects have different identities.
+So, let's have a look at our previous example and how the identities will change:
+
+>>> x = 3
+>>> print id(x)
+157379912
+>>> y = x
+>>> print id(y)
+157379912
+>>> y = 2
+>>> print id(y)
+157379924
+>>> print id(x)
+157379912
+>>> 
+
+===========================================
+
+python debugger can be launched by including the pdb-module	like this:  python -m pdb test1.py
+[js@localhost ~]$ python -m pdb test1.py 
+> /home/js/test1.py(4)<module>()
+-> def printme( str ):
+(Pdb) n
+> /home/js/test1.py(10)<module>()
+-> printme("I'm first call to user defined function!")
+(Pdb) 
+I'm first call to user defined function!
+> /home/js/test1.py(11)<module>()
+-> printme("Again second call to the same function")
+(Pdb) 
+Again second call to the same function
+--Return--
+> /home/js/test1.py(11)<module>()->None
+-> printme("Again second call to the same function")
+(Pdb) 
+--Return--
+> <string>(1)<module>()->None
+(Pdb) 
+The program finished and will be restarted
+> /home/js/test1.py(4)<module>()
+-> def printme( str ):
+(Pdb) q
+[js@localhost ~]$ 
+
+debugger commands:-
+- Entering a blank line repeats the last command entered.
+- Multiple commands may be entered on a single line, separated by ;;
+- b <lineno> breakpoint
+- commands
+(Pdb) commands 1
+(com) print some_variable
+(com) end
+(Pdb)
+- s(tep)
+    Execute the current line, stop at the first possible occasion (either in a function that is called or on the next line in the current function).
+- n(ext)
+    Continue execution until the next line in the current function is reached or it returns. (The difference between next and step is that step stops inside a called function, while next executes called functions at (nearly) full speed, only stopping at the next line in the current function.)
+- r(eturn)
+    Continue execution until the current function returns.
+- j(ump) lineno
+    Set the next line that will be executed. Only available in the bottom-most frame. This lets you jump back and execute code again, or jump forward to skip code that you don’t want to run.
+    It should be noted that not all jumps are allowed — for instance it is not possible to jump into the middle of a for loop or out of a finally clause.
+- a(rgs)
+    Print the argument list of the current function.	
+- q(uit)
+    Quit from the debugger. The program being executed is aborted.
+
+Whether a frame is considered to originate in a certain module is determined by the __name__ in the frame globals.
+
+==================================================================
+
+ftp from python -v prompt
+
+
+from ftplib import FTP
+>>> ftp = FTP('ftp.debian.org')
+>>> ftp.login()  
+'230 Login successful.'
+>>> ftp.cwd('debian')
+'250 Directory successfully changed.'
+>>> ftp.retrlines('LIST') 
+-rw-rw-r--    1 1176     1176         1056 Jun 04 12:34 README
+-rw-rw-r--    1 1176     1176         1290 Jun 26  2010 README.CD-manufacture
+-rw-rw-r--    1 1176     1176         2584 Jun 04 12:34 README.html
+-rw-r--r--    1 1176     1176       188176 Aug 01 13:52 README.mirrors.html
+-rw-r--r--    1 1176     1176       101866 Aug 01 13:52 README.mirrors.txt
+drwxr-sr-x   18 1176     1176         4096 Jun 04 12:35 dists
+drwxr-sr-x    4 1176     1176         4096 Aug 04 07:52 doc
+-rw-r--r--    1 1176     1176       168436 Aug 04 09:52 extrafiles
+drwxr-sr-x    3 1176     1176         4096 Jul 27  2015 indices
+-rw-r--r--    1 1176     1176     11750160 Aug 04 09:41 ls-lR.gz
+drwxr-sr-x    5 1176     1176         4096 Dec 19  2000 pool
+drwxr-sr-x    4 1176     1176         4096 Nov 17  2008 project
+drwxr-xr-x    3 1176     1176         4096 Oct 10  2012 tools
+drwxr-xr-x    6 1176     1176         4096 May 21 15:36 zzz-dists
+'226 Directory send OK.'
+>>> ftp.quit()
+'221 Goodbye.'
+>>> 
+
+https://docs.python.org/dev/library/ftplib.html
+
+-----------
+
+python script:-	https://pythonprogramming.net/ftp-transfers-python-ftplib/
+
+from ftplib import FTP
+
+#domain name or server ip:
+ftp = FTP('123.server.ip')
+ftp.login(user='username', passwd = 'password')
+
+ftp.cwd('/whyfix/')
+def grabFile():
+
+    filename = 'example.txt'
+
+    localfile = open(filename, 'wb')
+    ftp.retrbinary('RETR ' + filename, localfile.write, 1024)
+
+    ftp.quit()
+    localfile.close()
+	
+def placeFile():
+
+    filename = 'exampleFile.txt'
+    ftp.storbinary('STOR '+filename, open(filename, 'rb'))
+    ftp.quit()
+
+placeFile()	
+
+=============================================================
+Ports vs Sockets
+What are Ports and what are Sockets?
+
+A natural point of confusion here is the difference between sockets and ports. You can think of a port much like a shipping port, where boats dock at the port and unload goods. Then, you can think of the ship itself as the socket. The ocean is the internet. Much like shipping ports, a socket (our ship in this metaphor), is bound by a specific port. Docking at a different port is not allowed, for ships or sockets!
+
+Now, let's go ahead and play with ports and sockets in Python! This can be a slightly confusing topic, so I will do my best to document everything. The video should help as well if you are finding yourself confused.
+
+
+https://pythonprogramming.net/python-sockets/?completed=/ftp-transfers-python-ftplib/
+
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print(s)
+
+... n so on
+
+
+Q. Do open ports mean you are going to be hacked?
+
+It is a common misconception, perpetuated by the media, that an "open port" is all one needs to "hack" a something. The truth is, all websites have open ports, but each port is expecting a specific socket (ship in our metaphor from before), and that specific socket's type of payload of data (ship's cargo) is also known and expected before-hand.
+Thus, in our metaphor, if we have a ship that is supposed to be bringing 50 crates full of coffee, but has instead brought over 50 crates of swordfish, immediate red flags are thrown. The same is true with sockets and ports. The socket / ship can be denied.
+
+
+================================
+
+python script to send email
+
+#!/usr/bin/python
+
+import smtplib
+
+sender = 'from@fromdomain.com'
+receivers = ['to@todomain.com']
+
+message = """From: From Person <from@fromdomain.com>
+To: To Person <to@todomain.com>
+Subject: SMTP e-mail test
+
+This is a test e-mail message.
+"""
+
+try:
+   smtpObj = smtplib.SMTP('localhost')
+   smtpObj.sendmail(sender, receivers, message)         
+   print "Successfully sent email"
+except SMTPException:
+   print "Error: unable to send email"
+
+
+================================
+understand this thoroughly !!!
+
+python regex:-
+
+#!/usr/bin/python
+import re
+
+line = "Cats are smarter than dogs"
+
+matchObj = re.match( r'(.*) are (.*?) .*', line, re.M|re.I)
+
+if matchObj:
+   print "matchObj.group() : ", matchObj.group()
+   print "matchObj.group(1) : ", matchObj.group(1)
+   print "matchObj.group(2) : ", matchObj.group(2)
+else:
+   print "No match!!"
+
+When the above code is executed, it produces following result −
+
+matchObj.group() :  Cats are smarter than dogs
+matchObj.group(1) :  Cats
+matchObj.group(2) :  smarter
+
+http://www.tutorialspoint.com/python/python_reg_expressions.htm
+
+
+================================
+Pre-requisites: http://www.liquidweb.com/kb/how-to-install-mysql-mariadb-on-fedora-20/
+
+yum -y install mysql-server mysql
+systemctl start mysqld
+systemctl status mysqld
+systemctl stop mysqld
+mysql (prompt)
+
+[root@localhost js]# mysql -u root -p
+Enter password: 
+
+password was root123, the same as "su root"
+------
+
+http://www.tutorialspoint.com/python/python_database_access.htm
+
+DB:-	http://www.tutorialspoint.com/python/python_database_access.htm
+
+[js@localhost ~]$ python test2.py 
+Traceback (most recent call last):
+  File "test2.py", line 3, in <module>
+    import MySQLdb
+ImportError: No module named MySQLdb
+[js@localhost ~]$ 
+
+
+https://sourceforge.net/projects/mysql-python/
+
+To install MySQLdb module, download it from MySQLdb Download page and proceed as follows:
+
+$ gunzip MySQL-python-1.2.2.tar.gz
+$ tar -xvf MySQL-python-1.2.2.tar
+$ cd MySQL-python-1.2.2
+$ python setup.py build
+$ python setup.py install
+
+Note: Make sure you have root privilege to install above module. 
+
+--------
+
+easy_install, pip. pip is planned to replace easy_install
+both use PyPI (python package index)
+
+http://peak.telecommunity.com/DevCenter/EasyInstall
+
+yum -y install python-pip
+pip --v
+
+pip install pep8 (pep8 is the style guide for python)
+pep8 1_lists.py
+
+==============================
+do this: python decorators.
+
+http://www.python-course.eu/python3_decorators.php
+
+==============================
+
+zip() function- it will take multiple lists say list1, list2, etc and transform them into a single list of tuples by taking the corresponding elements of the lists that are passed as parameters. Eg: list1 = [‘A’,
+‘B’,’C’] and list2 = [10,20,30].
+zip(list1, list2) # results in a list of tuples say [(‘A’,10),(‘B’,20),(‘C’,30)]
+
+==============================
+
+7. Explain Python’s pass by references Vs pass by value . (or) Explain about Python’s parameter passing mechanism?
+    In Python, by default, all the parameters (arguments) are passed “by reference” to the functions. Thus, if you change the value of the parameter within a function, the change is reflected in the calling function.We can even observe the pass “by value” kind of a behaviour whenever we pass the arguments to functions that are of type say numbers, strings, tuples. This is because of the immutable nature of them.
+
+==============================
+
+11.What is Web Scraping? How do you achieve it in Python?
+    Web Scrapping is a way of extracting the large amounts of information which is available on the web sites and saving it onto the local machine or onto the database tables.
+    In order to scrap the web:load the web page which is interesting to you. To load the web page, use “requests” module.
+    parse HTML from the web page to find the interesting information.Python has few modules for scraping the web. They are urllib2, scrapy, pyquery, BeautifulSoap, etc.
+
+==============================
+
+13. Name the File-related modules in Python?
+    Python provides libraries / modules with functions that enable you to manipulate text files and binary files on file system. Using them you can create files, update their contents, copy, and delete files. The libraries are : os, os.path, and shutil.
+    Here, os and os.path – modules include functions for accessing the filesystem
+    shutil – module enables you to copy and delete the files.	
+	
+==============================
+
+14.Explain the use “with” in python?
+    In python generally “with” statement is used to open a file, process the data present in the file, and also to close the file without calling a close() method.
+	“with” statement makes the exception handling simpler by providing cleanup activities.
+    General form of with:
+    with open(“file name”, “mode”) as file-var:
+    processing statements
+    note: no need to close the file by calling close() upon file-var.close()
+	
+17. Explain the shortest way to open a text file and display its contents.?
+    The shortest way to open a text file is by using “with” command as follows:
+    with open(“file-name”, “r”) as fp:
+    fileData = fp.read()
+    #to print the contents of the file print(fileData)
+
+18. How do you create a dictionary which can preserve the order of pairs?
+    We know that regular Python dictionaries iterate over <key, value> pairs in an arbitrary order, hence they do not preserve the insertion order of <key, value> pairs.
+    Python 2.7. introduced a new “OrderDict” class in the “collections” module and it provides the same interface like the general dictionaries but it traverse through keys and values in an ordered manner depending on when a key was first inserted.
+    Eg: from collections import OrderedDict
+    d = OrderDict([(‘Company-id':1),(‘Company-Name':’Intellipaat’)])
+    d.items() # displays the output as: [(‘Company-id':1),(‘Company-Name':’Intellipaat’)]	
+
+==============================
+15. Explain all the file processing modes supported by Python ?
+    Python allows you to open files in one of the three modes. They are:
+    read-only mode, write-only mode, read-write mode, and append mode by specifying the flags “r”, “w”, “rw”, “a” respectively.
+    A text file can be opened in any one of the above said modes by specifying the option “t” along with
+    “r”, “w”, “rw”, and “a”, so that the preceding modes become “rt”, “wt”, “rwt”, and “at”.
+    A binary file can be opened in any one of the above said modes by specifying the option “b” along with “r”, “w”, “rw”, and “a” so that the preceding modes become “rb”, “wb”, “rwb”, “ab”.
+
+==============================
+
+20. What is the use of enumerate() in Python?
+    Using enumerate() function you can iterate through the sequence and retrieve the index position and its corresponding value at the same time.
+    >>> for i,v in enumerate([‘Python’,’Java’,’C++’]):
+    print(i,v)
+    0 Python
+    1 Java
+    2 C++
+	
+21. How many kinds of sequences are supported by Python? What are they?
+    Python supports 7 sequence types. They are str, list, tuple, unicode, bytearray, xrange, and buffer. where xrange is deprecated in python 3.5.X.	
+
+22. For benchmarking modules or rest apis we use the module "timeit"
+
+23. They are: single, multi-level, hierarchical and multiple inheritance. 
+types of inheritances supported in python
+
+24. 
+2)  What is PEP 8?
+
+PEP 8 is a coding convention, a set of recommendation, about how to write your Python code more readable.
+
+3) What is pickling and unpickling?
+
+Pickle module accepts any Python object and converts it into a string representation and dumps it into a file by using dump function, this process is called pickling.  While the process of retrieving original Python objects from the stored string representation is called unpickling.
+
+29) Explain how to delete a file in Python?
+
+By using a command os.remove (filename) or os.unlink(filename)
+	
+38.Which methods of Python are used to determine the type of instance and inheritance?
+    Python has 2 built-in functions that work with inheritance:
+		isinstance() – this method checks the type of instance.
+			o for eg, isinstance(myObj, int) – returns True only when “myObj. class ” is “int”.
+		issubclass() – this method checks class inheritance
+			o for eg: issubclass(bool, int) – returns True because “bool” is a subclass of “int”.
+			o issubclass(unicode, str) – returns False because “unicode” is not a subclass of “str”.
+
+47.Differentiate between append() and extend() methods. ?
+    Both append() and extend() methods are the methods of list. These methods a re used to add the elements at the end of the list.
+		append(element) – adds the given element at the end of the list which has called this method.
+		extend(another-list) – adds the elements of another-list at the end of the list which is called the extend method.
+
+There are various web frameworks provided by Python. They are
+web2py – it is the simplest of all the web frameworks used for developing web applications.
+cherryPy – it is a Python-based Object oriented Web framework.
+Flask – it is a Python-based micro-framework for designing and developing web applications.
+
+49.How do you check the file existence and their types in Python?
+    os.path.exists() – use this method to check for the existence of a file. It returns True if the file exists, false otherwise. Eg: import os; os.path.exists(‘/etc/hosts’)
+    os.path.isfile() – this method is used to check whether the give path references a file or not. It returns True if the path references to a file, else it returns false. Eg: import os; os.path.isfile(‘/etc/hosts’)
+    os.path.isdir() – this method is used to check whether the give path references a directory or not. It returns True if the path references to a directory, else it returns false. Eg: import os; os.path.isfile(‘/etc/hosts’)
+    os.path.getsize() – returns the size of the given file
+    os.path.getmtime() – returns the timestamp of the given path.
+
+	
+==============================
+
+do this: python rest
+
+http://rest.elkstein.org/2008/02/using-rest-in-python.html
+
+extra:- runnable gives u a terminal to write python scripts.
+http://code.runnable.com/UqqYPSGIpqAeAAPc/how-to-use-restful-api-with-requests-for-python
+
+==============================
+yield, generators, iterables.
+
+To understand what yield does, you must understand what generators are. And before generators come iterables.
+
+Iterables
+When you create a list, you can read its items one by one. Reading its items one by one is called iteration:
+>>> mylist = [1, 2, 3]
+>>> for i in mylist:
+...    print(i)
+1
+2
+3
+
+mylist is an iterable.
+When you use a list comprehension, you create a list, and so an iterable:
+
+>>> mylist = [x*x for x in range(3)]
+>>> for i in mylist:
+...    print(i)
+0
+1
+4
+
+Q. what is list comprehension?
+A. Pending.
+
+
+Everything you can use "for... in..." on is an iterable; lists, strings, files...
+
+Generators
+Generators are iterators, but you can only iterate over them once. It's because they do not store all the values in memory, they generate the values on the fly:
+
+>>> mygenerator = (x*x for x in range(3))
+>>> for i in mygenerator:
+...    print(i)
+0
+1
+4
+
+It is just the same except you used () instead of []. 
+BUT, you cannot perform for i in mygenerator a second time since generators can only be used once: they calculate 0, then forget about it and calculate 1, and end calculating 4, one by one.
+
+
+Yield
+Yield is a keyword that is used like return, except the function will return a generator.
+
+Yield
+
+Yield is a keyword that is used like return, except the function will return a generator.
+
+>>> def createGenerator():
+...    mylist = range(3)
+...    for i in mylist:
+...        yield i*i
+...
+>>> mygenerator = createGenerator() # create a generator
+>>> print(mygenerator) # mygenerator is an object!
+<generator object createGenerator at 0xb7555c34>
+>>> for i in mygenerator:
+...     print(i)
+0
+1
+4
+
+
+do this: 
+yield is very confusing!
+http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python?rq=1
+do more research on this
+
+--------------
+
+Difference between __str__ and __repr__ in Python
+
+Differences between isinstance() and type() in python
+--------------
+You can check the syntax by compiling it:
+python -m py_compile script.py
+
+To run Python with warnings turned on:
+python -W all 1_vars.py
+
+pip is the python package index (pypi)
+PEP 8 -- Style Guide for Python Code
+--------------
+
+list:
+- get size
+- find empty elements in a list
+- find duplicates in a list
+- increase size by append more elements
+- decrease size of list by del
+- join to list. 
+- push
+- replace / update one value 
+- replace / update values > 1 
+For a list ["foo", "bar", "baz"] and an item in the list "bar", what's the cleanest way to get its index (1) in Python?
+>>> ["foo", "bar", "baz"].index("bar")
+- list comprehension
+https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+
+tuple:
+
+slice, extended slice, splice -- lists
+
+a[start:end] # items start through end-1
+a[start:]    # items start through the rest of the array
+a[:end]      # items from the beginning through end-1
+a[:]         # a copy of the whole array
+
+a[-1]    # last item in the array
+a[-2:]   # last two items in the array
+a[:-2]   # everything except the last two items
+
+Note: splice cannot be done on strings as strings are immutable in python.
+
+-----------------
+
+OOPS
+
+#!/usr/bin/python
+
+class Employee:
+   'Common base class for all employees'
+   empCount = 0
+
+   def __init__(self, name, salary):
+      self.name = name
+      self.salary = salary
+      Employee.empCount += 1
+   
+   def displayCount(self):
+     print "Total Employee %d" % Employee.empCount
+
+   def displayEmployee(self):
+      print "Name : ", self.name,  ", Salary: ", self.salary
+
+"This would create first object of Employee class"
+emp1 = Employee("Zara", 2000)
+"This would create second object of Employee class"
+emp2 = Employee("Manni", 5000)
+emp1.displayEmployee()
+emp2.displayEmployee()
+print "Total Employee %d" % Employee.empCount
+
+When the above code is executed, it produces the following result −
+
+Name :  Zara ,Salary:  2000
+Name :  Manni ,Salary:  5000
+Total Employee 2
+
+You can add, remove, or modify attributes of classes and objects at any time −
+
+emp1.age = 7  # Add an 'age' attribute.
+emp1.age = 8  # Modify 'age' attribute.
+del emp1.age  # Delete 'age' attribute.
+
+Instead of using the normal statements to access attributes, you can use the following functions −
+
+    The getattr(obj, name[, default]) : to access the attribute of object.
+    The hasattr(obj,name) : to check if an attribute exists or not.
+    The setattr(obj,name,value) : to set an attribute. If attribute does not exist, then it would be created.
+    The delattr(obj, name) : to delete an attribute.
+
+hasattr(emp1, 'age')    # Returns true if 'age' attribute exists
+getattr(emp1, 'age')    # Returns value of 'age' attribute
+setattr(emp1, 'age', 8) # Set attribute 'age' at 8
+delattr(empl, 'age')    # Delete attribute 'age'
+
+Built-In Class Attributes
+
+Every Python class keeps following built-in attributes and they can be accessed using dot operator like any other attribute −
+
+    __dict__: Dictionary containing the class's namespace.
+    __doc__: Class documentation string or none, if undefined.
+    __name__: Class name.
+    __module__: Module name in which the class is defined. This attribute is "__main__" in interactive mode.
+    __bases__: A possibly empty tuple containing the base classes, in the order of their occurrence in the base class list.
+
+print "Employee.__doc__:", Employee.__doc__
+print "Employee.__name__:", Employee.__name__
+print "Employee.__module__:", Employee.__module__
+print "Employee.__bases__:", Employee.__bases__
+print "Employee.__dict__:", Employee.__dict__
+
+------------
+
+Destroying Objects (Garbage Collection)
+Python deletes unneeded objects (built-in types or class instances) automatically to free the memory space.	
+
+You normally will not notice when the garbage collector destroys an orphaned instance and reclaims its space. But a class can implement the special method __del__(), called a destructor, that is invoked when the instance is about to be destroyed. This method might be used to clean up any non memory resources used by an instance.
+
+Example
+
+This __del__() destructor prints the class name of an instance that is about to be destroyed −
+
+#!/usr/bin/python
+
+class Point:
+   def __init( self, x=0, y=0):
+      self.x = x
+      self.y = y
+   def __del__(self):
+      class_name = self.__class__.__name__
+      print class_name, "destroyed"
+
+pt1 = Point()
+pt2 = pt1
+pt3 = pt1
+print id(pt1), id(pt2), id(pt3) # prints the ids of the obejcts
+del pt1
+del pt2
+del pt3
+
+When the above code is executed, it produces following result −
+
+3083401324 3083401324 3083401324
+Point destroyed
+
+---------------
+
+inheritance
+
+#!/usr/bin/python
+
+class Parent:        # define parent class
+   parentAttr = 100
+   def __init__(self):
+      print "Calling parent constructor"
+
+   def parentMethod(self):
+      print 'Calling parent method'
+
+   def setAttr(self, attr):
+      Parent.parentAttr = attr
+
+   def getAttr(self):
+      print "Parent attribute :", Parent.parentAttr
+
+class Child(Parent): # define child class
+   def __init__(self):
+      print "Calling child constructor"
+
+   def childMethod(self):
+      print 'Calling child method'
+
+c = Child()          # instance of child
+c.childMethod()      # child calls its method
+c.parentMethod()     # calls parent's method
+c.setAttr(200)       # again call parent's method
+c.getAttr()          # again call parent's method
+
+
+-----------------
+You can use issubclass() or isinstance() functions to check a relationships of two classes and instances.
+    The issubclass(sub, sup) boolean function returns true if the given subclass sub is indeed a subclass of the superclass sup.
+    The isinstance(obj, Class) boolean function returns true if obj is an instance of class Class or is an instance of a subclass of Class
+-----------------
+
+overriding methods
+
+Example
+
+#!/usr/bin/python
+
+class Parent:        # define parent class
+   def myMethod(self):
+      print 'Calling parent method'
+
+class Child(Parent): # define child class
+   def myMethod(self):
+      print 'Calling child method'
+
+c = Child()          # instance of child
+c.myMethod()         # child calls overridden method
+
+---------------
+
+Overloading Operators
+
+Suppose you have created a Vector class to represent two-dimensional vectors, what happens when you use the plus operator to add them? Most likely Python will yell at you.
+
+You could, however, define the __add__ method in your class to perform vector addition and then the plus operator would behave as per expectation −
+Example
+
+#!/usr/bin/python
+
+class Vector:
+   def __init__(self, a, b):
+      self.a = a
+      self.b = b
+
+   def __str__(self):
+      return 'Vector (%d, %d)' % (self.a, self.b)
+   
+   def __add__(self,other):
+      return Vector(self.a + other.a, self.b + other.b)
+
+v1 = Vector(2,10)
+v2 = Vector(5,-2)
+print v1 + v2
+
+---------------
+
+Data Hiding
+
+An object's attributes may or may not be visible outside the class definition. You need to name attributes with a double underscore prefix, and those attributes then are not be directly visible to outsiders.
+Example
+
+#!/usr/bin/python
+
+class JustCounter:
+   __secretCount = 0
+  
+   def count(self):
+      self.__secretCount += 1
+      print self.__secretCount
+
+counter = JustCounter()
+counter.count()
+counter.count()
+print counter.__secretCount
+
+When the above code is executed, it produces the following result −
+
+1
+2
+Traceback (most recent call last):
+  File "test.py", line 12, in <module>
+    print counter.__secretCount
+AttributeError: JustCounter instance has no attribute '__secretCount'
+
+Python protects those members by internally changing the name to include the class name. 
+You can access such attributes as object._className__attrName. 
+If you would replace your last line as following, then it works for you −
+
+.........................
+print counter._JustCounter__secretCount	(this works!!!)
+
+-----------
+super() in python
+
+http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
+
+=================================================
+
+lambda, reduce, filter, map
+http://www.python-course.eu/lambda.php
+
+=================================================
+
+djangoproject
+
+
+https://docs.djangoproject.com/en/1.9/topics/install/
+
+[root@localhost mypython]# pip install Django
+Downloading/unpacking Django
+  Downloading Django-1.10.tar.gz (7.7MB): 7.7MB downloaded
+  Running setup.py egg_info for package Django
+    
+    no previously-included directories found matching 'django/contrib/admin/bin'
+    warning: no previously-included files matching '__pycache__' found anywhere in distribution
+Installing collected packages: Django
+  Running setup.py install for Django
+    
+    no previously-included directories found matching 'django/contrib/admin/bin'
+    warning: no previously-included files matching '__pycache__' found anywhere in distribution
+    changing mode of build/scripts-2.7/django-admin.py from 644 to 755
+    changing mode of /usr/bin/django-admin.py to 755
+    Installing django-admin script to /usr/bin
+Successfully installed Django
+Cleaning up...
+[root@localhost mypython]# 
+
+
+[js@localhost mypython]$ python -m django --version
+1.10
+[js@localhost mypython]$ 
+
+cd xxx_django_xxx/
+django-admin startproject mysite
+
+https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+Follow the steps in the tutorial as is. 
+
+....
+[js@localhost mysite]$ python manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+August 05, 2016 - 12:09:20
+Django version 1.10, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+...
+python manage.py startapp polls
+creates the sqlite db.
+
+
+
+
+=========================
+TDD using python
+
+https://dzone.com/articles/tdd-python-5-minutes
+
+http://chimera.labs.oreilly.com/books/1234000000754/index.html
+
+=========================
+
+http://www.bogotobogo.com/python/MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.php
+
+pymongo
+
+- yum install gcc python-devel
+- pip install pymongo
+
+robomongo
+google and goto site n download n unzip and double the binary
+
+==========================
+
+pycharm
+
+cp -rp pycharm-community-2016.2/ /tmp
+su -c "chown -R root:root /tmp/pycharm*"
+su -c "mv /tmp/pycharm-community* /opt/pycharm-community"
+
+/opt/pycharm-community/bin/pycharm.sh
+/opt/pycharm-community/bin/inspect.sh 
+
+are the most important.
+
+su -c "ln -s /opt/pycharm-community/bin/pycharm.sh /usr/local/bin/pycharm"
+su -c "ln -s /opt/pycharm-community/bin/inspect.sh /usr/local/bin/inspect"
+
+http://tutorialforlinux.com/2014/10/13/how-to-install-pycharm-python-ide-on-fedora-32-64bit-linux-easy-guide-2/
+
+==========================
+
+http://stackoverflow.com/questions/10879806/python-how-to-intercept-a-method-call-which-does-not-exists
+
+how to intercept-a-method-call-which-does-not-exists
+
+class MagicClass(object):
+    def __getattr__(self, name):
+        def wrapper(*args, **kwargs):
+            print "'%s' was called" % name
+        return wrapper
+
+ob = MagicClass()
+ob.unknown_method()
+ob.unknown_method2()
+
+prints
+
+'unknown_method' was called
+'unknown_method2' was called
+
+http://effbot.org/zone/python-getattr.htm
+Python’s getattr function is used to fetch an attribute from an object, using a string object instead of an identifier to identify the attribute. In other words, the following two statements are equivalent:
+
+value = obj.attribute
+value = getattr(obj, "attribute")
+
+If the attribute exists, the corresponding value is returned. If the attribute does not exist, you get an AttributeError exception instead.
+The getattr function can be used on any object that supports dotted notation (by implementing the __getattr__ method). This includes class objects, modules, and even function objects.
+
+==========================
+http://stackoverflow.com/questions/8985806/python-constructors-and-init
+
+There is no function overloading in Python, meaning that you can't have multiple functions with the same name but different arguments.
+In your code example, you're not overloading __init__(). What happens is that the second definition rebinds the name __init__ to the new method, rendering the first method inaccessible.
+
+As to your general question about constructors, Wikipedia is a good starting point: link. For Python-specific stuff, I highly recommend the Python tutorial.
+
+
+==========================
+built-in exceptions
+
+https://docs.python.org/3/library/exceptions.html
+
+==========================
+
+decorator function
+http://www.saltycrane.com/blog/2010/03/simple-python-decorator-examples/
+
+Jack's practical definition of a decorator is:
+
+    A function that takes one argument
+    Returns something useful
+
+In many cases, a function decorator can be described more specifically:
+
+    A function that takes one argument (the function being decorated)
+    Returns the same function or a function with a similar signature
+	
+==========================
+fresh python installation
+boot WHS1
+-> su root
+-> yum search python
+exit as root and type "python" and u should goto the python console ">>>".
+python -V for version
+
+now we require pip (its a tool which uses py package index)
+yum -y install python-pip
+pip --version
+pip install pep8 (pep8 is the style guide for python)
+	pep8 1_lists.py (example )
+
+Lets also install pychecker
+yum install pychecker
+
+---------
+
+pycharm
+goto http://tutorialforlinux.com/2014/10/13/how-to-install-pycharm-python-ide-on-fedora-32-64bit-linux-easy-guide-2/
+google "pycharm download" (203 MB) . download it.
+
+mkdir radical_python
+chmod 777 radical_python
+cd radical_python
+pwd
+/home/js/radical_python
+[js@localhost radical_python]$ cp ../Downloads/pycharm-community-2016.2.1.tar.gz .
+
+tar xvzf pycharm-community*.tar.gz -C /tmp/
+####cp -rp pycharm-community-2016.2/ /tmp
+su -c "chown -R root:root /tmp/pycharm*"
+su -c "mv /tmp/pycharm-community* /opt/pycharm-community"
+
+Below are the most important. 
+/opt/pycharm-community/bin/pycharm.sh
+/opt/pycharm-community/bin/inspect.sh 
+Lets create links to these. 
+
+su -c "ln -s /opt/pycharm-community/bin/pycharm.sh /usr/local/bin/pycharm"
+su -c "ln -s /opt/pycharm-community/bin/inspect.sh /usr/local/bin/inspect"
+
+exit as root
+type "pycharm" as js-user.
+
+-----
+To install mongodb :- 
+yum install mongodb (didnt work)
+yum remove mongodb
+
+http://www.liquidweb.com/kb/how-to-install-mongodb-on-fedora-20/
+vim /etc/yum.repos.d/mongodb.repo
+For 64-bit machine
+[mongodb]
+name=MongoDB Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0
+enabled=1
+
+yum -y install mongodb-org mongodb-org-server (PENDING!!!!)
+systemctl start mongod
+	[root@localhost radical_python]# systemctl start mongod
+	Goto normal js-user's tab and type "mongo"
+systemctl status mongod
+systemctl stop mongod
+mongo
+
+systemctl enable mongod (start service @ boot)
+mongostat
+mongo --port 22222 (to start on that port)
+
+
+----
+
+
+http://www.bogotobogo.com/python/MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.php
+
+pymongo
+
+- yum install gcc python-devel
+- pip install pymongo
+
+robomongo
+google and goto site n download n unzip and double the binary
+
+
+
+
+====================================
+explore:-
+
+python + cgi
+python + apache + mod_python (bulky)
+python + WSGI
+python + uWSGI	https://www.linode.com/docs/websites/nginx/wsgi-using-uwsgi-and-nginx-on-fedora-14
+	- very detailed explanations.
+	https://chriswarrick.com/blog/2016/02/10/deploying-python-web-apps-with-nginx-and-uwsgi-emperor/
+	
+python + gunicorn + Nginx	https://www.quora.com/What-are-the-differences-between-nginx-and-gunicorn
+	Nginx serves static content
+	gunicorn servers dynamic content on 8000 port. So, gunicorn does not have to worry about slow static request.
+	Nginx + gunicorn is faster than the webservers provided by Django or Flask. Django and Flask are basically for development and not fast on production. See that link.
+	gunicorn: https://words.volant.is/articles/understanding-gunicorns-async-worker-concurrency-model/
+	it can be used in sync or async. in async, coroutines can be used. See. http://www.chiark.greenend.org.uk/~sgtatham/coroutines.html
+	
+	http://stackoverflow.com/questions/7739810/wsgi-vs-uwsgi-with-nginx
+	So plain WSGI is bad, because it bloats every single one of your nginx threads with a big Python interpreter. Using flup or gunicorn or uWSGI behind nginx is much better, because that frees up nginx to simply serve content, and lets you choose how many tiny light nginx threads to run, independently of your choice of how many heavyweight Python threads you bring up to serve dynamic content. People seem very happy with gunicorn at the moment, but any of those three options should work fine.
+
+	Going forward, it also frees you up to move the Python to another server when load starts to get serious.
+	
+	
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-uwsgi-and-nginx-to-serve-python-apps-on-ubuntu-14-04
+	(skipped)
+		yum install python-dev python-pip nginx
+		pip install virtualenv
+	
+(Installing gunicorn n nginx which seems to be what every1 is doing. )	
+https://www.linode.com/docs/websites/nginx/wsgi-using-uwsgi-and-nginx-on-fedora-14
+
+1. Locate hostname (shortname n fullname)
+[root@localhost js]# hostname 
+localhost.localdomain
+[root@localhost js]# hostname -f
+localhost.localdomain
+[root@localhost js]# 
+	
+2. yum update
+yum install python-devel libxml2 libxml2-devel python-setuptools zlib-devel wget openssl-devel pcre pcre-devel sudo gcc make autoconf automake
+
+>>>> (skip this ) pip install gunicorn (got diverted by reading http://docs.gunicorn.org/en/latest/install.html)
+
+3. back to WSGI and nginx setup for fedora-20/
+uwsgi-2.0.13.tar.gz is the latest uwsgi http://projects.unbit.it/downloads/
+wget http://projects.unbit.it/downloads/uwsgi-2.0.13.tar.gz
+
+tar -zxvf uwsgi-2.0.13.tar.gz
+mv 	uwsgi-2.0.13  uwsgi/
+cd uwsgi/
+python setup.py build
+make
+
+4. useradd -M -r --shell /bin/sh --home-dir /opt/uwsgi uwsgi
+
+chown -R uwsgi:uwsgi /opt/uwsgi
+touch /var/log/uwsgi.log
+chown uwsgi /var/log/uwsgi.log
+
+5. 
+chkconfig --add uwsgi
+service uwsgi does not support chkconfig
+
+vim /etc/init.d/uwsgi
+Added these 2 lines (based on: http://serverfault.com/questions/29788/what-is-needed-for-a-linux-service-to-be-supported-by-chkconfig)
+	# chkconfig: 345 99 01
+	# description: some startup script
+
+chkconfig --add uwsgi	
+chkconfig --list
+livesys        	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+livesys-late   	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+mongod         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+netconsole     	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+network        	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+uwsgi          	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+
+chkconfig uwsgi on
+livesys        	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+livesys-late   	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+mongod         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+netconsole     	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+network        	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+uwsgi          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+
+/etc/init.d/uwsgi start
+wont start as this file has html content and it wont execute via ``
+So, downloaded this file: https://www.linode.com/docs/assets/653-uwsgi-init-rpm.sh
+Redoing from "Configure uWSGI" step 3 
+ cp /opt/init-rpm.sh /etc/init.d/uwsgi
+ chmod +x /etc/init.d/uwsgi
+ 
+ chkconfig --list
+ chkconfig --del uwsgi
+ chkconfig --list
+chkconfig --add uwsgi
+chkconfig --list
+livesys        	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+livesys-late   	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+mongod         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+netconsole     	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+network        	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+uwsgi          	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+
+chkconfig uwsgi on
+chkconfig --list
+livesys        	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+livesys-late   	0:off	1:off	2:off	3:on	4:on	5:on	6:off
+mongod         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+netconsole     	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+network        	0:off	1:off	2:off	3:off	4:off	5:off	6:off
+uwsgi          	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+
+/etc/init.d/uwsgi start 
+
+
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxx
+yum install nginx	-- wip.
+pip install virtualenv
+	=> yum install python-dev
+cd /home/js/mypython/
+mkdir my_app
+
+cd my_app
+virtualenv my_app_venv
+New python executable in /home/js/mypython/my_app/my_app_venv/bin/python
+Installing setuptools, pip, wheel...
+Installing setuptools, pip, wheel...done.
+
+mkdir app/ (for modules)
+
+[root@localhost my_app]# source my_app_venv/bin/activate
+(my_app_venv) [root@localhost my_app]# 
+
+pip install uwsgi
+
+
+(my_app_venv) [root@localhost my_app]# ^C
+(my_app_venv) [root@localhost my_app]# 
+(my_app_venv) [root@localhost my_app]# 
+(my_app_venv) [root@localhost my_app]# 
+(my_app_venv) [root@localhost my_app]# 
+(my_app_venv) [root@localhost my_app]# [root@localhost my_app]# source my_app_venv/bin/activate
+bash: [root@localhost: command not found...
+(my_app_venv) [root@localhost my_app]# (my_app_venv) [root@localhost my_app]# 
+bash: syntax error near unexpected token `[root@localhost'
+(my_app_venv) [root@localhost my_app]# pip install uwsgi
+Collecting uwsgi
+/home/js/mypython/my_app/my_app_venv/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py:318: SNIMissingWarning: An HTTPS request has been made, but the SNI (Subject Name Indication) extension to TLS is not available on this platform. This may cause the server to present an incorrect TLS certificate, which can cause validation failures. You can upgrade to a newer version of Python to solve this. For more information, see https://urllib3.readthedocs.org/en/latest/security.html#snimissingwarning.
+  SNIMissingWarning
+/home/js/mypython/my_app/my_app_venv/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py:122: InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately and may cause certain SSL connections to fail. You can upgrade to a newer version of Python to solve this. For more information, see https://urllib3.readthedocs.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning
+  Downloading uwsgi-2.0.13.1.tar.gz (784kB)
+    100% |████████████████████████████████| 788kB 120kB/s 
+Building wheels for collected packages: uwsgi
+  Running setup.py bdist_wheel for uwsgi ... -
+
+  Stored in directory: /root/.cache/pip/wheels/01/e4/de/0b2bbeba234858bd780924d03031a4e817119aafb0cfc4c79e
+Successfully built uwsgi
+Installing collected packages: uwsgi
+Successfully installed uwsgi-2.0.13.1
+
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-applications-using-uwsgi-web-server-with-nginx
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-6-with-yum
+
+
+(my_app_venv) [root@localhost my_app]# /etc/init.d/nginx start
+bash: /etc/init.d/nginx: No such file or directory
+
+(my_app_venv) [root@localhost my_app]# yum install epel-release
+
+(my_app_venv) [root@localhost my_app]# yum install nginx
+Loaded plugins: langpacks, refresh-packagekit
+Package 1:nginx-1.4.7-5.fc20.x86_64 already installed and latest version
+Nothing to do
+
+
+>>> open a new tab and without going into my_app/ folder, run "yum remove nginx"
+Now, goto my_app/ folder and run "yum install nginx"
+
+/etc/init.d/nginx start didnt work and that binary does not exist.
+so did "service nginx start" 
+
+(my_app_venv) [root@localhost my_app]# service nginx start
+Redirecting to /bin/systemctl start  nginx.service
+(my_app_venv) [root@localhost my_app]# ps -ef | grep 'nginx'
+root     58682     1  0 11:25 ?        00:00:00 nginx: master process /usr/sbin/nginx
+nginx    58683 58682  0 11:25 ?        00:00:00 nginx: worker process
+root     58705 21263  0 11:27 pts/2    00:00:00 grep --color=auto nginx
+
+---
+for fun:
+uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi (foreground process).
+...
+current working directory: /home/js/mypython/my_app
+detected binary path: /home/js/mypython/my_app/my_app_venv/bin/uwsgi
+...
+
+how to remove a virtualenv (like our my_app)
+http://stackoverflow.com/questions/11005457/how-do-i-remove-delete-a-virtualenv
+
+---
+
+edited the /etc/nginx/nginx.conf and put their config.
+service nginx stop
+service nginx start
+
+>>> note: uwsgi can be run in 3 modes:
+    - Passing configurations as arguments
+    - Using .ini files for configurations
+    - Using .json files for configurations
+skipped this knowledge session. lets mode ahead.
+
+==================================================================
+http://lists.unbit.it/pipermail/uwsgi/2014-October/007630.html
+chkconfig problems.
+http://serverfault.com/questions/29788/what-is-needed-for-a-linux-service-to-be-supported-by-chkconfig
+
+http://serverfault.com/questions/535641/unable-to-load-configuration-from-uwsgi
+uwsgi --ini myconf.ini --http :9090 --log-to /tmp/uwsgi.log
+tail -f /tmp/uwsgi.log
+
+TDD on python
+http://www.onlamp.com/pub/a/python/2004/12/02/tdd_pyunit.html
+https://docs.python.org/2/library/unittest.html
+
+
+==================================================================
+
+next steps:-
+
+1. redo installation and document the installation steps
+2. make simple tweaks to my_app/ 
+3. https://realpython.com/blog/python/api-integration-in-python/ may give an idea as to how to build rest-apis.
+Also see http://webpy.org/tutorial2.en (without using a web-server)
+
+==================================================================
+
+postgres
+
+https://www.liquidweb.com/kb/how-to-install-and-connect-to-postgresql-on-fedora-22/
+
+	rpm -iUvh http://yum.postgresql.org/9.3/fedora/fedora-22-x86_64/pgdg-fedora93-9.3-2.noarch.rpm
+	dnf -y update
+	dnf -y install postgresql93 postgresql93-server postgresql93-contrib postgresql93-libs --enablerepo=pgdg93
+	
+	Configure Postgres to start when the server boots:
+			systemctl enable postgresql-9.3
+
+	Initialize Postgres w/ the following command:	
+			/usr/pgsql-9.3/bin/postgresql93-setup initdb
+	Which should result in:
+			Initializing database ... OK
+
+	Then start Postgres:
+			systemctl start postgresql-9.3
+			
+	Let’s switch into that system user:
+			su – postgres
+
+	You’ll receive a command line similar to:
+			-bash-4.3$
+			
+					[root@localhost js]# su - postgres
+						Last failed login: Fri Sep 23 02:04:44 EDT 2016 on pts/2
+						There were 3 failed login attempts since the last successful login.
+						-bash-4.2$ 
+
+	And then connect to the PostgreSQL terminal (in the postgres role):
+			psql
+			
+					-bash-4.2$ psql
+						psql (9.3.10)
+						Type "help" for help.
+
+						postgres=# 
+(as root in a new tab)						
+>>> pip install psycopg2 (python package for postgresql
+						

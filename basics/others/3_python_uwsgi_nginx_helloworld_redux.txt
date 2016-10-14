@@ -1,0 +1,98 @@
+(as root) 
+cd /home/js/mypython/
+mkdir my_app
+
+cd my_app
+virtualenv my_app_venv
+
+(as js)
+mkdir app/
+source my_app_venv/bin/activate
+pip install uwsgi
+source my_app_venv/bin/activate
+(my_app_venv) [root@localhost my_app]# pip install uwsgi
+
+(my_app_venv) [root@localhost my_app]# /etc/init.d/nginx start
+bash: /etc/init.d/nginx: No such file or directory
+
+yum install nginx (if it was previously installed do "yum remove nginx" and again install in this virtualenv)
+
+(my_app_venv) [root@localhost my_app]# service nginx start
+Redirecting to /bin/systemctl start  nginx.service
+(my_app_venv) [root@localhost my_app]# ps -ef | grep 'nginx'
+root      3931     1  0 01:12 ?        00:00:00 nginx: master process /usr/sbin/nginx
+nginx     3932  3931  0 01:12 ?        00:00:00 nginx: worker process
+root      3937  3246  0 01:12 pts/1    00:00:00 grep --color=auto nginx
+
+----
+(steps to re-make env. incase u exit as root)
+
+cd /home/js/mypython/my_app
+source my_app_venv/bin/activate
+ ps -ef | grep 'nginx' (it should be running if it wasnt stopped earlier
+uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi
+http://localhost/ (shows nginx page) 
+http://localhost:8080/
+
+========================
+
+for fun:
+uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi (foreground process).
+...
+current working directory: /home/js/mypython/my_app
+detected binary path: /home/js/mypython/my_app/my_app_venv/bin/uwsgi
+...
+
+----
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-applications-using-uwsgi-web-server-with-nginx
+create wsgi.py in /home/js/mypython/my_app/ with this content.
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    return ["Hello!"]
+	
+service nginx stop/start/status
+goto localhost:8080/ and u should now see Hello!	
+
+----
+
+task 2:-
+edit wsgi.py to "Hello Jenson!"
+restart nginx n uswgi 
+refresh browser
+worked!
+
+task3:- rename wsgi.py to something else, it should still work.
+worked!
+well it didnt work technically, we changed text to "Allo Jenson" and it didnt work. 
+So wsgi.py is really required. 
+
+
+task4:- 
+install postgresql from 1.txt 
+write an new app to connect to postgresql 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

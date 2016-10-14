@@ -1,0 +1,54 @@
+pip install --upgrade setuptools
+[root@localhost rest_trial]# pip install ez_setup
+[root@localhost rest_trial]# pip install unroll
+
+yum install python-devel postgresql-devel
+pip install pyscopg2
+
+-------------
+Note we will need to do "pip install pyscopg2" under the virtual env too.
+
+source rest_trial_venv/bin/activate
+	pip install pyscopg2
+
+----	
+GET 
+1.
+http://127.0.0.1:5000/get_app_data
+curl -i http://127.0.0.1:5000/appliances/v1/
+
+2.
+@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET']) 
+curl -i http://127.0.0.1:5000/appliances/v1/1001
+
+3. 
+http://127.0.0.1:5000/appliances/v1/count
+
+POST  (INSERT)
+1. 
+
+Good reads: 
+> https://techarena51.com/index.php/flask-sqlalchemy-postgresql-tutorial/
+> http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+
+
+Reference:-
+curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
+-H is short for --header, -d for --data
+
+Actual:-
+curl -H "Content-Type: application/json" -X POST -d '{"id":1002,"name":"planktonlex.co.in", "customer":"spongebob"}' http://127.0.0.1:5000/appliances/v1/
+(In DB, id is int, name is text, customer is text)
+
+[root@localhost rest_trial]# curl -H "Content-Type: application/json" -X POST -d '{"id":1002,"name":"planktonlex.co.in", "customer":"spongebob"}' http://127.0.0.1:5000/appliances/v1/ 
+{
+  "task": {
+    "customer": "spongebob", 
+    "id": 1002, 
+    "name": "planktonlex.co.in"
+  }
+}
+
+Pending:-
+curl -H "Content-Type: application/json" -X POST -d '{"id":1003,"name":"planktonlex.co.in", "customer":"spongebob"}' http://127.0.0.1:5000/appliances/v1/
+curl -H "Content-Type: application/json" -X POST -d '{"id":1004,"name":"planktonlex.co.in", "customer":"spongebob"}' http://127.0.0.1:5000/appliances/v1/

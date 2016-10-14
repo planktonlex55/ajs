@@ -1,0 +1,17 @@
+myVM1
+/home/js/mypython/xxx_django_xxx/mysite @ myVM1	(Django is installed here)
+/home/js/mypython/parag_pathak @ myVM1 for postgres connectivity
+
+- has mongo, robomongo, pycharm, pip, etc.
+- has mysql
+- has postgres
+- has code for postgres, mongo n mysql connectivity
+- has nginx, uwsgi n virtualenv see 1.txt or 3*.txt to how to run a webapp using these
+- has laravel
+
+VMPWHS1
+- has postgres
+- has nginx, uwsgi n virtualenv 
+- lets use this to create a poc for the client.
+
+VMPWHS2

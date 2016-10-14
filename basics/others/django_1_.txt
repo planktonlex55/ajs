@@ -1,0 +1,7 @@
+>>If you have installed the application:
+django-admin version
+
+>> [root@localhost django_stuff]# django-admin version
+1.6.10
+
+

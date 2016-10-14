@@ -1,0 +1,221 @@
+
+#pymongo scripts:-
+#for insert
+#!/usr/bin/python
+
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/')
+
+# data base name : 'test-database-1'
+mydb = client['test-database-1']
+
+import datetime
+
+myrecord = {
+        "author": "Duke",
+        "title" : "PyMongo 101",
+        "tags" : ["MongoDB", "PyMongo", "Tutorial"],
+        "date" : datetime.datetime.utcnow()
+        }
+
+record_id = mydb.mytable.insert(myrecord)
+
+print record_id
+print mydb.collection_names()
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++
+#psycopg2 . Scripts are in /home/js/mypython/parag_pathak @ myVM1
+#2. seed script.
+
+#!/usr/bin/python
+
+#script to create another table and load seed data into it.
+#CREATE TABLE DEPARTMENT(
+#   ID INT PRIMARY KEY      NOT NULL,
+#   DEPT           CHAR(50) NOT NULL,
+#   EMP_ID         INT      NOT NULL
+#);
+
+#yum install python-psycopg2 
+
+import sys
+import psycopg2
+
+conn = None
+
+try:
+        conn = psycopg2.connect (database='postgres', user='postgres')
+        #SELECT current_database(); #gives name of current database. in our case it is 'postgres'
+        #\l is also an option.
+
+        cur = conn.cursor()
+        cur.execute('select current_database()')
+        resultset_one = cur.fetchone()
+        print resultset_one
+
+except  psycopg2.DatabaseError, e:
+        print 'Error %s' % e
+        sys.exit(1)
+
+finally:
+		if conn:
+                conn.close()
+
+----
+#2_1_rough.py
+
+#!/usr/bin/python
+
+import sys
+import psycopg2
+
+conn = None
+conn = psycopg2.connect ("host='localhost' dbname='postgres' user='postgres'")
+cur = conn.cursor()
+print "connected!"
+
+----
+#script1 
+
+#!/usr/bin/python
+
+import sys
+import psycopg2
+
+conn = None
+conn_string = "host='localhost' dbname='postgres' user='postgres'"
+
+try:
+        conn = psycopg2.connect (conn_string)
+        cur = conn.cursor()
+
+        cur.execute('select version()')
+        #cur.execute('select versions()')
+        resultset_one = cur.fetchone()
+        print resultset_one
+        print "connected!"
+
+except psycopg2.DatabaseError, e:
+        print "%s" % e
+        sys.exit(1)
+
+finally :
+        if conn:
+                conn.close()
+
+----
+
+#!/usr/bin/python
+#create table
+
+import sys
+import psycopg2
+
+conn = None
+conn_string = "host='localhost' dbname='postgres' user='postgres'"
+
+try:
+        conn = psycopg2.connect (conn_string)
+        cur = conn.cursor()
+
+        table_sql = "CREATE TABLE DEPARTMENT(ID INT PRIMARY KEY NOT NULL, DEPT CHAR(50) NOT NULL, EMP_ID INT NOT NULL)"
+
+        cur.execute(table_sql)
+        conn.commit()
+        #https://wiki.postgresql.org/wiki/Talk:Using_psycopg2_with_PostgreSQL
+        print "created table!"
+
+except psycopg2.DatabaseError, e:
+        print "%s" % e
+        conn.rollback()
+        sys.exit(1)
+
+finally :
+        if conn:
+                conn.close()
+
+----
+#populate table
+
+import sys
+import psycopg2
+
+conn = None
+conn_string = "host='localhost' dbname='postgres' user='postgres'"
+
+try:
+        conn = psycopg2.connect (conn_string)
+        cur = conn.cursor()
+        id = 1
+        dept = 'python'
+        while id <= 30:
+                emp_id = id + 10
+                table_sql = "insert into department values (%d, '%s', %d )" % (id, dept, emp_id)
+                print table_sql
+                cur.execute(table_sql)
+                id = id + 1
+
+        conn.commit()
+        #https://wiki.postgresql.org/wiki/Talk:Using_psycopg2_with_PostgreSQL
+        print "created table!"
+
+except psycopg2.DatabaseError, e:
+        print "%s" % e
+        conn.rollback()
+        sys.exit(1)
+
+finally :
+        if conn:
+                conn.close()
+
+----				
+#this is a module i created. mypostgre.py
+# this will be called in another driver program				
+
+
+#!/usr/bin/python
+
+import sys
+import psycopg2
+#pip install pprint
+import pprint
+
+conn = None
+conn_string = "host='localhost' dbname='postgres' user='postgres'"
+
+def getDbCursor():
+        conn = psycopg2.connect (conn_string)
+        cur = conn.cursor()
+        pprint.pprint (cur)
+        return (cur, conn)
+
+#---- driver program is below ----
+
+#!/usr/bin/python
+
+import mypostgre
+import pprint
+
+(cursor, conn) = mypostgre.getDbCursor()
+pprint.pprint(cursor)
+
+try:
+        cursor.execute("create table nonsense (val int)")
+        #(val int) will skip the except: block
+        #whereas "val int" will invoke the except: block
+        print "inside try:"
+
+except:
+        conn.rollback()
+        print "inside except:"
+
+finally:
+        print "it is finished!"
+        if conn:
+                conn.close()
+		
+		
+----
+
+		

@@ -1,0 +1,9 @@
+my_app/ or someother virtualenv/
+wsgi.py (callable)
+	==> enter paths to it and it should work like router.pm 
+		if this works then its a very big deal. (task 1).
+		
+		
+http://www.postgresqltutorial.com/postgresql-stored-procedures/
+for postgres pl/sql stored procedure 	
+
