@@ -1,0 +1,6 @@
+var employees = [
+						{name:'Tendulkar', gender:'Male', country:'India', age: 43},
+						{name:'Phelps', gender:'Male', country:'USA', age: 33},
+						{name:'Sara', gender:'Female', country:'United Kingdom', age:32},
+						{name:'Saina', gender:'Female', country:'Bharat', age:25}
+				];
