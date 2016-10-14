@@ -1,0 +1,119 @@
+V_4_
+
+
+db seeding activity.
+
+> wget http://www.sqlite.org/sqlite-autoconf-3070603.tar.gz
+tar xvfz sqlite-autoconf-3070603.tar.gz
+cd sqlite-autoconf-3070603
+./configure
+make
+make install
+( Refer http://www.thegeekstuff.com/2011/07/install-sqlite3 )
+
+sqlite3 <path-to-database.db>
+.tables
+sqlite> .tables
+appliance  target   
+sqlite> 
+
+[root@localhost sqlite]# 
+sqlite3 database.db  .schema > schema.sql
+sqlite3 database.db  .dump > dump.sql
+grep -vx -f schema.sql dump.sql > data.sql
+
+
+> database.db is the sqlite file from WHS. Lets import this into postgres.
+		http://stackoverflow.com/questions/4581727/convert-sqlite-sql-dump-file-to-postgresql
+/path/to/psql -d database -U username -W < /the/path/to/sqlite-dumpfile.sql
+
+/usr/bin/psql is where psql was installed
+
+> CREATE DATABASE whs
+/usr/bin/psql -d whs -U postgres -W < /home/js/mypython/sqlite/database.db 
+
+
+> cd /home/js/mypython/sqlite
+[root@localhost sqlite]# su - postgres
+Last login: Mon Sep 26 03:06:59 EDT 2016 on pts/3
+-bash-4.2$ psql
+psql (9.3.10)
+Type "help" for help.
+
+----
+$ su - postgres
+psql whs 
+whs=# \du
+\du
+alter role js superuser login;
+
+
+[root@localhost sqlite]# locate pg_hba.conf
+/usr/pgsql-9.3/share/pg_hba.conf.sample
+/var/lib/pgsql/9.3/data/pg_hba.conf
+
+https://www.liquidweb.com/kb/how-to-install-and-connect-to-postgresql-on-fedora-22/
+
+systemctl stop postgresql-9.3
+systemctl start postgresql-9.3
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+
+these 2 lines SHOULD have "trust"
+See http://www.cyberciti.biz/faq/psql-fatal-ident-authentication-failed-for-user/   
+
+
+su - postgres
+psql whs js
+(it worked !!!!)
+
+exit everything.
+[root@localhost sqlite]# /usr/bin/psql -d whs -U js
+(it worked!!!!)
+
+Lets LOOADD the sql files !!!
+
+[root@localhost sqlite]# /usr/bin/psql -d whs -U js < /tmp/schema.sql
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+[root@localhost sqlite]# cp dump.sql /tmp/.
+[root@localhost sqlite]# /usr/bin/psql -d whs -U js < /tmp/dump.sql
+[root@localhost sqlite]# cp data.sql /tmp/.
+[root@localhost sqlite]# /usr/bin/psql -d whs -U js < /tmp/data.sql
+
+/usr/bin/psql -d whs -U js
+whs# select count(*) from appliance;  #1001
+whs# select count(*) from target;	  #3119
+
+----
+extra commands for GK:-
+
+\list
+\du
+\d tablename
+\dt *.*
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';
+SELECT appliance FROM information_schema.tables WHERE table_schema = 'public';
+------------------------------
+
+Next steps:-
+Have a rest api like this:-
+http://127.0.0.1:5000/appliances (with pagination)
+http://127.0.0.1:5000/appliance/id 
+http://127.0.0.1:5000/targets (with pagination)
+http://127.0.0.1:5000/target/id 
+
+---- 
+
+
+
+
+
+
+

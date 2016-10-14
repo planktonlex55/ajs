@@ -1,0 +1,155 @@
+
+----------
+
+This is daily when u want to restart what all was running before u left for the day
+
+cd /home/js/mypython/rest_trial/
+ps -ef | grep 'nginx'
+service nginx start
+source rest_trial_venv/bin/activate
+	-> uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi	
+	
+Note:- 
+1. if u opening another tab, to run the flask application ("python flaskpy.py")
+then it wont run. for it to run, we have to be on the virtualenv. 
+So, we will have to do "source rest_trial_venv/bin/activate" everytime we open a new tab.	
+
+2. if u edit code, then
+		-> stop n restart nginx
+		-> uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi
+		-> stop n rerun python flaskpy.py
+		
+---------
+
+(as root) -- This is one time during installation
+
+cd /home/js/mypython/rest_trial/
+virtualenv rest_trial_venv
+	mkdir app/ (this is very important, if u miss this step, browser never picks up the code of wsgi.py)
+	
+source rest_trial_venv/bin/activate
+ ps -ef | grep 'nginx' (it should be running if it wasnt stopped earlier)
+ service nginx start
+uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi (uwsgi may be required to be installed again)
+ pip install uwsgi
+uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi 
+
+vim mypython/rest_trial/wsgi.py
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    return ["Hello!"] 
+
+-----------	
+	
+Q. hth do we do routing without using a framework?
+	
+A. Maybe use bottle.
+http://bottlepy.org/docs/dev/index.html
+
+(bottle + uwsgi + nginx) this is crappy.
+vim ./wsgi.py  
+
+def application(env, start_response):
+    from bottle import route, run, template
+
+    @route('/hello')
+    def index(name):
+        return name 
+
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    print index
+    return index('jenson')
+
+-or-
+def application(env, start_response):
+    from bottle import route, run, template
+
+    @route('/hello')
+    def index(name):
+        return 'hellooo ' + name
+
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    #print index
+    return index('jenson')
+
+-or-(ONLY bottle) this looks awesome, but cannot be scaled to infinity
+https://realpython.com/blog/python/developing-with-bottle-part-1/
+Note: turn off any other web server like nginx running on 8080
+
+step1:
+vim ./mypython/bottlepy.py
+import os
+from bottle import route, run, template
+
+index_html = '''My first web app! By <strong>{{ author }}</strong>.'''
+
+
+@route('/')
+def index():
+    return template(index_html, author='Real Python')
+
+
+@route('/name/<name>')
+def name(name):
+    return template(index_html, author=name)
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))
+    run(host='0.0.0.0', port=port, debug=True)
+
+step2:
+python bottlepy.py
+
+step3: 
+goto http://0.0.0.0:8080/  or http://0.0.0.0:8080/name/jenson
+
+xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+A. Maybe we should Flask
+https://www.digitalocean.com/community/tutorials/how-to-deploy-flask-web-applications-using-uwsgi-behind-nginx-on-centos-6-4
+pip install flask (from within the virtualenv)	
+
+Notes:-
+> Flask runs on 5000 port.
+	https://www.tutorialspoint.com/flask/flask_application.htm
+
+> Flask uses jinja2 for templating and Werkzeug's URL routing rules.
+
+----
+
+[root@localhost rest_trial]# source rest_trial_venv/bin/activate (vimp!!!)
+
+step2:
+vim ./mypython/rest_trial/flaskpy.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+   return 'Hello World’
+
+if __name__ == '__main__':
+   app.run()
+
+step 3:
+python flaskpy.py   
+
+step 4: open http://127.0.0.1:5000 on browser
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+so the decision has been taken by me, for poc we will use flask.
+http://flask.pocoo.org/docs/0.11/patterns/urlprocessors/
+see how to handle url preprocessors here.
+
+@app.url_defaults
+def add_language_code(endpoint, values):
+    if 'lang_code' in values or not g.lang_code:
+        return
+    if app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
+        values['lang_code'] = g.lang_code
+
+		
+skipping this for now.		

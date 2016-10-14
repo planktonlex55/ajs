@@ -1,0 +1,39 @@
+This is daily when u want to restart what all was running before u left for the day
+
+cd /home/js/mypython/rest_trial/
+ps -ef | grep 'nginx'
+service nginx start
+cd /home/js/mypython/rest_trial/
+source rest_trial_venv/bin/activate
+	-> uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi	
+	
+Note:- 
+1. if u opening another tab, to run the flask application ("python flaskpy.py")
+then it wont run. for it to run, we have to be on the virtualenv. 
+So, we will have to do "source rest_trial_venv/bin/activate" everytime we open a new tab.	
+
+2. if u edit code, then
+		-> stop n restart nginx
+		-> uwsgi --socket 127.0.0.1:8080 --protocol=http -w wsgi
+		-> stop n rerun python flaskpy.py
+
+-------------------
+> page not found implementation.
+http://flask.pocoo.org/docs/0.11/patterns/errorpages/ 
+
+		--> where to put html files in the templating system of flask.
+			http://flask.pocoo.org/docs/0.11/quickstart/#rendering-templates
+			
+			eg. for 404.html we put it inside templates/404.html
+
+> flask template tutorial
+http://flask.pocoo.org/docs/0.11/tutorial/templates/
+
+
+
+> TDD using flask
+http://flask.pocoo.org/docs/0.11/testing/#testing
+		
+-----
+
+		 	

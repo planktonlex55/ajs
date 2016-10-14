@@ -1,0 +1,11 @@
+Task:-
+
+> cp whitehat-challenge data into postgrestables.
+> implement routing using Flask to display all function.
+		https://www.tutorialspoint.com/flask/flask_url_building.htm . use url_for () and redirect() as shown here to link to more pages.
+		
+		
+Note:- 
+	how to use uwsgi's power with Flask is shown here. just amazing.
+		https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04
+	
