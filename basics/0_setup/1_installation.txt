@@ -1,0 +1,111 @@
+Fresh box:-
+yum -y install firefox
+yum -y install python (not required). (if u do this, it will install python 3. py3 has a diff. dir. but better not to install it.)
+python -V
+yum -y install python-pip
+[root@localhost js]# pip --version
+pip 1.4.1 from /usr/lib/python2.7/site-packages (python 2.7)
+
+[   easy_install, pip. pip is planned to replace easy_install
+	both use PyPI (python package index)
+]
+
+pip install pep8 (pep8 is the style guide for python)
+pep8 1_lists.py
+
+#webserver installation:-
+[root@localhost js]# hostname
+localhost.localdomain
+[root@localhost js]# hostname -f
+localhost.localdomain
+
+yum update (skipped)
+yum install python-devel libxml2 libxml2-devel python-setuptools zlib-devel wget openssl-devel pcre pcre-devel sudo gcc make autoconf automake
+
+** for postgres, mysql installation refer 1.txt.
+
+yum -y install nginx	
+	whereis nginx
+	service nginx start
+	service nginx stop/status
+
+---pending---	
+
+pip install virtualenv
+	=> yum install python-dev (skipped)
+cd /home/js/mypython/
+mkdir my_app
+
+cd my_app
+virtualenv my_app_venv (some name we r giving)
+[js@localhost my_app]$ virtualenv my_app_venv
+New python executable in /home/js/mypython/my_app/my_app_venv/bin/python
+Installing setuptools, pip, wheel...done.
+
+
+[root@localhost my_app]# source my_app_venv/bin/activate
+(my_app_venv) [root@localhost my_app]# 
+pip install uwsgi (not required, but lets do it).
+pip install flask
+Installing collected packages: click, MarkupSafe, Jinja2, Werkzeug, itsdangerous, flask
+Successfully installed Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.11 click-6.6 flask-0.11.1 itsdangerous-0.24
+(my_app_venv) [root@localhost my_app]# 
+
+python -m flask
+
+mkdir app/ (this is for the modules)
+mkdir static/
+
+yum -y install vim 
+	if u get errors, do "yum update vi" first and then install vim
+
+(my_app_venv) [root@localhost my_app]# pip install pprintpp
+Installing collected packages: pprintpp
+Successfully installed pprintpp-0.2.3
+
+(skip this shit)
+pip install sqlite3
+	==> Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-8s3D8C/sqlite3/
+		pip install --upgrade setuptools (didnt work)
+		pip install -U pip (didnt work)
+	==> Refer http://stackoverflow.com/questions/35991403/python-pip-install-gives-command-python-setup-py-egg-info-failed-with-error-c
+		pip install ez_setup
+		pip install unroll
+
+		(my_app_venv) [root@localhost my_app]# pip install --upgrade setuptools
+		(my_app_venv) [root@localhost my_app]# pip install ez_setup
+		(my_app_venv) [root@localhost my_app]# pip install unroll
+Looks like sqlite3 comes with python
+eg. 
+http://zetcode.com/db/sqlitepythontutorial/
+$ python
+Python 2.7.3 (default, Jan  2 2013, 16:53:07) 
+[GCC 4.7.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sqlite3
+>>> sqlite3.version
+'2.6.0'
+>>> sqlite3.sqlite_version
+'3.7.13'
+
+
+mkdir static/ 
+cd static/
+vim styles.css
+http://stackoverflow.com/questions/20646822/how-to-serve-static-files-in-flask
+
+
+html files have to be inside templates/ folder.
+This is how ur flask app should look like:-
+
+/flaskwp1.py
+/templates
+  webcode.html
+/static
+  webcodestyle.css
+
+http://stackoverflow.com/questions/10372883/simple-flask-application-that-reads-its-content-from-a-html-file-external-styl
+  
+------------
+
+

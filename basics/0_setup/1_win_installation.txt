@@ -1,0 +1,47 @@
+C:\Python27>python -m pip install -U pip
+Collecting pip
+  Downloading pip-8.1.2-py2.py3-none-any.whl (1.2MB)
+    18% |######                          | 225kB 34kB/s eta 0:00:29
+	
+C:\Python27>python E:\jsamuel\PHP\radical_python\radical_final\0_setup\get-pip.py
+Requirement already up-to-date: pip in c:\python27\lib\site-packages
+Collecting wheel
+  Downloading wheel-0.29.0-py2.py3-none-any.whl (66kB)
+    100% |################################| 71kB 102kB/s
+Installing collected packages: wheel
+Successfully installed wheel-0.29.0
+
+C:\Python27>
+
+C:\Python27>python -m pip --version
+pip 8.1.2 from C:\Python27\lib\site-packages (python 2.7)
+
+C:\Python27>copy E:\jsamuel\PHP\radical_python\radical_final\0_setup\get-pip.py .
+        1 file(s) copied.
+
+C:\Python27>python get-pip.py
+Requirement already up-to-date: pip in c:\python27\lib\site-packages
+
+but it actually in 
+C:\Python27\Scripts\pip.exe 
+
+c:\Python27\Scripts>pip --version
+pip 8.1.2 from c:\python27\lib\site-packages (python 2.7)
+
+http://www.tylerbutler.com/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/
+
+pip install virtualenv 
+pip install virtualenvwrapper-powershell //not required.
+pip install virtualenvwrapper-win
+
+pip install pprintpp
+
+c:\Python27\Scripts\virtualenv is installed here.
+http://docs.python-guide.org/en/latest/dev/virtualenvs/
+
+c:\Python27\Scripts>virtualenv venv
+New python executable in c:\Python27\Scripts\venv\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+
+c:\Python27\Scripts>
+	
