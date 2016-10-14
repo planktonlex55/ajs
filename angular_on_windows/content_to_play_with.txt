@@ -1,6 +1,36 @@
+#ng-repeat. tut2.
 var employees = [
 						{name:'Tendulkar', gender:'Male', country:'India', age: 43},
 						{name:'Phelps', gender:'Male', country:'USA', age: 33},
 						{name:'Sara', gender:'Female', country:'United Kingdom', age:32},
 						{name:'Saina', gender:'Female', country:'Bharat', age:25}
 				];
+				
+#nested ng-repeat. tut3.
+var countries = [
+	{name:'USA',
+	 cities: [
+				{name: 'Dallas'},
+				{name: 'Palo Alto'},
+				{name: 'Menlo Park'},
+			 ]
+	},
+	
+	{name:'India',
+	 cities: [
+				{name: 'Delhi'},
+				{name: 'Mumbai'},
+				{name: 'Pune'},
+			 ]
+	},
+	
+	{name:'UK',
+	 cities: [
+				{name: 'London'},
+				{name: 'Liverpool'},
+				{name: 'Birmingham'},
+			 ]
+	},
+];
+
+#
