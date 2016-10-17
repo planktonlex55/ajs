@@ -31,13 +31,17 @@
 			<th>City Name, Country</th>
 		</tr>
 	</thead>
-	<tbody ng-repeat ="country in countries">
-	<tr><td><b>Index of {{country.name}} is: {{$index}} </b></td></tr> 
+	<tbody ng-repeat ="country in countries" ng-init="parentIndex=$index">
+	<tr><td><b>Method 1: Index of {{country.name}} is: {{$index}} </b></td></tr> 
+	<tr><td><b>Method 2: Index of {{country.name}} using ng-init is: {{parentIndex}} </b></td></tr> 
+	<!-- note here that, in above example, only inbuilt vars are having $ prefixed, but custom variables do not have $ prefixed. Hence it is parentIndex and NOT $parentIndex --> 
+	
 	<!-- <p> Index of {{country.name}} is: {{$index}} </p> . This wont work as it is invalid html -->
 		<tr ng-repeat ="city in country.cities">
 			<td>{{city.name}}, {{country.name}}</td>
 			<td>Index of {{country.name}} is: {{$parent.$index}}</td>
 			<td>Index of {{city.name}} is: {{$index}}</td>
+			
 		</tr>
 	</tbody>
 	</table>
