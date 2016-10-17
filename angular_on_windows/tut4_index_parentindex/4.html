@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script type="text/javascript" src="js4.js"></script>	
+	
+<!-- bootstrap -->	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app="myModule">
+<div ng-controller="myController">
+	<div class="form-group"> <!-- bootstrap -->
+		<label for="usr">Name:</label> <!-- bootstrap -->
+		<input type="text" class="form-control" id="usr" ng-model="searchString" ><!-- bootstrap -->
+		<input type="submit" value="Submit" ng-click="search(searchString)"></input>
+	</div>
+
+	<div> Display in table format, using ng-repeat: </div>
+	<br />
+	<div class="container">	<!-- bootstrap -->
+	<table class="table table-striped table-bordered table-condensed" > <!-- bootstrap -->
+	<thead>
+		<tr>
+			<th>City Name, Country</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat ="country in countries">
+	<tr><td><b>Index of {{country.name}} is: {{$index}} </b></td></tr> 
+	<!-- <p> Index of {{country.name}} is: {{$index}} </p> . This wont work as it is invalid html -->
+		<tr ng-repeat ="city in country.cities">
+			<td>{{city.name}}, {{country.name}}</td>
+			<td>Index of {{country.name}} is: {{$parent.$index}}</td>
+			<td>Index of {{city.name}} is: {{$index}}</td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
+</div>	
+
+</body>
+</html>
