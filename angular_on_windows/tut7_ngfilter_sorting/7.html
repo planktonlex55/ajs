@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script type="text/javascript" src="js7.js"></script>	
+	
+<!-- bootstrap -->	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app="myModule">
+<div ng-controller="myController">
+
+<select ng-model="sortColumn">
+	<option value="name">Name ASC</option>
+	<option value="gender">Gender Asc</option>
+	<option value="-salary">Salary Desc</option> <!--note that since the option is desc, the column has minus ( - ) -->
+</select> 
+ 
+	<br />
+	<div class="container">	<!-- bootstrap -->
+	<table class="table table-striped table-bordered table-condensed" > <!-- bootstrap -->
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Country</th>
+			<th>Age</th>
+			<th>DOB</th>
+			<th>Salary</th>
+			<th>Salary</th>			
+		</tr>
+	</thead>
+	<tbody ng-repeat ="employee in employees | orderBy: sortColumn">  <!-- same as below. minus means descending order -->
+	<!-- sortColumn is a variable and should NOT be in single quotes-->
+	<!-- <tbody ng-repeat ="employee in employees | orderBy: 'name' : true">  -->
+	<!-- false is default --> 
+	<tr>
+		<td>{{employee.name | uppercase}}</td>
+		<td>{{employee.gender | lowercase }}</td>
+		<td>{{employee.country}}</td>
+		<td>{{employee.age}}</td>
+		<td>{{employee.dob | date : dd/MM/yyyy}}</td>
+		<td>{{employee.salary | number }}</td> <!-- gives the thousand separator --> 
+		<td>{{employee.salary | currency : "£" }}</td> 
+		<!-- default is $ . Goto Run-> run-> charmap->select --> 
+	</tr>
+	</tbody>
+	</table>
+	</div>
+</div>	
+
+</body>
+</html>
