@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script type="text/javascript" src="js6.js"></script>	
+	
+<!-- bootstrap -->	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app="myModule">
+<div ng-controller="myController">
+
+<div>Rows to display: 
+<input type="number" step="1" min="0" max="5" ng-model="rowLimit" ></input>
+</div>
+ 
+	<br />
+	<div class="container">	<!-- bootstrap -->
+	<table class="table table-striped table-bordered table-condensed" > <!-- bootstrap -->
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Country</th>
+			<th>Age</th>
+			<th>DOB</th>
+			<th>Salary</th>
+			<th>Salary</th>			
+		</tr>
+	</thead>
+	<tbody ng-repeat ="employee in employees | limitTo: rowLimit">
+	<tr>
+		<td>{{employee.name | uppercase}}</td>
+		<td>{{employee.gender | lowercase }}</td>
+		<td>{{employee.country}}</td>
+		<td>{{employee.age}}</td>
+		<td>{{employee.dob | date : dd/MM/yyyy}}</td>
+		<td>{{employee.salary | number }}</td> <!-- gives the thousand separator --> 
+		<td>{{employee.salary | currency : "£" }}</td> 
+		<!-- default is $ . Goto Run-> run-> charmap->select --> 
+	</tr>
+	</tbody>
+	</table>
+	</div>
+</div>	
+
+</body>
+</html>
