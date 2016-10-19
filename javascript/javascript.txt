@@ -1,0 +1,493 @@
+====Basics====
+<script language="javascript" type="text/javascript">
+JavaScript code
+</script>
+
+> Comments:- // and /* */
+> uses semicolons as line terminators.
+
+> turning on & off:-
+>> IE
+		Here are the steps to turn on or turn off JavaScript in Internet Explorer:
+		? Follow Tools -> Internet Options from the menu.
+		? Select Security tab from the dialog box.
+		? Click the Custom Level button.
+		? Scroll down till you find the Scripting option.
+		? Select Enable radio button under Active scripting.
+		? Finally click OK and come out.
+>> FF 
+		Here are the steps to turn on or turn off JavaScript in Firefox:
+		? Open a new tab -> type about: config in the address bar.
+		? Then you will find the warning dialog. Select I’ll be careful, I promise!
+		? Then you will find the list of configure options in the browser.
+		? In the search bar, type javascript.enabled.
+		? There you will find the option to enable or disable javascript by right-clicking on the value of that option -> select toggle.
+		If javascript.enabled is true; it converts to false upon clicking toogle. If javascript is disabled; it gets enabled upon clicking toggle.		
+
+>> Chrome
+		Here are the steps to turn on or turn off JavaScript in Chrome:
+		? Click the Chrome menu at the top right hand corner of your browser.
+		? Select Settings.
+		? Click Show advanced settings at the end of the page.
+		? Under the Privacy section, click the Content settings button.
+		? In the "Javascript" section, select "Do not allow any site to run JavaScript" or "Allow all sites to run JavaScript (recommended)".
+
+> warning for non-js browsers
+<noscript>
+Sorry...JavaScript is needed to go ahead.
+</noscript>
+Now, if the user's browser does not support JavaScript or JavaScript is not enabled, then the message from </noscript> will be displayed on the screen.
+
+> placement
+
+? Script in <head>...</head> section. when the script is to be run on an event eg. user clicks a button and "onclick".
+? Script in <body>...</body> section. 
+If you need a script to run as the page loads so that the script generates content in the page, then the script goes in the <body> portion of the document.
+eg. document.write("hello world");
+? Script in <body>...</body> and <head>...</head> sections. //to get both the benefits of above 2.
+? Script in an external file and then include in <head>...</head> section. //modularization.
+
+> Datatypes 
+JavaScript allows you to work with three primitive data types:
+? Numbers, e.g., 123, 120.50 etc.
+? Strings of text, e.g. "This text string" etc.
+? Boolean, e.g. true or false.
+
+JavaScript also defines two trivial data types, null and undefined, each of which defines only a single value. 
+In addition to these primitive data types, JavaScript supports a composite data type known as object.
+
+> Variables
+variable declaration using var-keyword
+variable initialization
+
+JavaScript is untyped language. 
+This means that a JavaScript variable can hold a value of any data type. 
+Unlike many other languages, you don't have to tell JavaScript during variable declaration what type of value the variable will hold.
+
+> Variable Scope
+? Global Variables: A global variable has global scope which means it can be defined anywhere in your JavaScript code.
+? Local Variables: A local variable will be visible only within a function where it is defined. Function parameters are always local to that function.
+
+If you declare a local variable or function parameter with the same name as a global variable, you effectively hide the global variable.
+Within the body of a function, a local variable takes precedence over a global variable with the same name.
+
+> Variable Names
+- cannot use variables whose name is same as reserved datatypes.For example, break or boolean variable names are not valid.
+- JavaScript variable names should not start with a numeral (0-9).
+- For example, 123test is an invalid variable name but _123test is a valid one.
+- JavaScript variable names are case-sensitive. For example, Name and name are two different variables.
+
+> Javascript Reserved Words
+Attach screenshot from pdf to the ppt
+
+> Operators
+? Arithmetic Operators 
+	+ - * / % ++ --
+Addition operator 
+	(+) works for Numeric as well as Strings. e.g. "a" + 10 will give "a10".
+? Comparison Operators
+	==, !=, <, > , <=, >=, === 
+? Logical (or Relational) Operators
+	&&, ||, !
+	var a = true;
+	var b = false;
+
+	(a && b) => false 
+	(a || b) => true 
+	!(a && b) => true
+
+? Assignment Operators
+=, +=, -=, *=, /=, %= 
+
+? Conditional (or ternary) Operators
+We will discuss two operators here that are quite useful in JavaScript: the conditional operator (? :) and the typeof operator.
+>> If Condition is true? Then value X : Otherwise value Y
+
+>>
+The typeof operator evaluates to "number", "string", or "boolean" if its operand is a number, string, or boolean value and returns true or false based on the evaluation.
+Here is a list of the return values for the typeof Operator. 
+Type 		String Returned by typeof 
+Number 			"number" 
+String 			"string" 
+Boolean 		"boolean" 
+Object 			"object"
+Function 		"function" 
+Undefined 		"undefined" 
+Null 			"object"
+
+> Conditionals:- 
+>>
+? if statement
+? if...else statement
+? if...else if... statement
+
+>> switch
+var grade = 'A';
+
+switch (grade)
+{
+case 'A': document.write("Good job<br />");
+Javascript
+45
+break;
+case 'B': document.write("Pretty good<br />");
+break;
+case 'C': document.write("Passed<br />");
+break;
+case 'D': document.write("Not so good<br />");
+break;
+case 'F': document.write("Failed<br />");
+break;
+default: document.write("Unknown grade<br />")
+}
+
+> while (expression) {
+}
+
+> do .. while 
+do{
+Statement(s) to be executed;
+} while (expression);
+Note: Don’t miss the semicolon used at the end of the do...while loop.
+executes atleast once.
+
+> for loop
+for(count = 0; count < 10; count++){
+document.write("Current Count : " + count );
+document.write("<br />");
+}
+
+>> for .. in loop
+The for...in loop is used to loop through an object's properties. As we have not discussed Objects yet, you may not feel comfortable with this loop. But once you understand how objects behave in JavaScript, you will find this loop very useful.
+
+for (variablename in object){
+statement or block to execute
+}
+
+> continue 
+The continue statement tells the interpreter to immediately start the next iteration of the loop and skip the remaining code block.
+
+while (x < 10)
+{
+x = x + 1;
+if (x == 5){
+continue; // kill rest of the loop body. 5 wont be in the output.
+}
+document.write( x + "<br />");
+}
+
+> label: 
+
+A label is simply an identifier followed by a colon (:) that is applied to a statement or a block of code.
+there should not be any other statement in between a label name and associated loop.
+
+
+<html>
+<body>
+<script type="text/javascript">
+<!--
+document.write("Entering the loop!<br /> ");
+outerloop: // This is the label name
+for (var i = 0; i < 5; i++)
+{
+document.write("Outerloop: " + i + "<br />");
+innerloop:
+for (var j = 0; j < 5; j++)
+Javascript
+61
+{
+if (j > 3 ) break ; // Quit the innermost loop
+if (i == 2) break innerloop; // Do the same thing
+if (i == 4) break outerloop; // Quit the outer loop
+document.write("Innerloop: " + j + " <br />");
+}
+}
+document.write("Exiting the loop!<br /> ");
+//-->
+</script>
+</body>
+</html>
+
+Output:-
+
+Entering the loop! 
+Outerloop: 0 Innerloop: 0 Innerloop: 1 Innerloop: 2 Innerloop: 3 
+Outerloop: 1 Innerloop: 0 Innerloop: 1 Innerloop: 2 Innerloop: 3 
+Outerloop: 2 
+Outerloop: 3 Innerloop: 0 Innerloop: 1 Innerloop: 2 Innerloop: 3
+Outerloop: 4 Exiting the loop!
+
+> functions:- 
+>> function definition
+>> function call 
+>> nested functions
+
+<script type="text/javascript">
+<!--
+function hypotenuse(a, b) {
+	function square(x) { return x*x; }
+	return Math.sqrt(square(a) + square(b));
+}
+function secondFunction(){
+	var result;
+	result = hypotenuse(1,2);
+	document.write ( result );
+}
+//-->
+</script>
+
+>> Function() constructor
+
+The function statement is not the only way to define a new function; you can define your function dynamically using Function() constructor along with the new operator.
+Note: Constructor is a terminology from Object Oriented Programming. You may not feel comfortable for the first time, which is OK.
+
+<script type="text/javascript">
+<!--
+var variablename = new Function(Arg1, Arg2..., "Function Body");
+//-->
+</script>
+
+The Function() constructor expects any number of string arguments. The last argument is the body of the function – it can contain arbitrary JavaScript statements, separated from each other by semicolons.
+
+Notice that the Function() constructor is not passed any argument that specifies a name for the function it creates. The unnamed functions created with the Function() constructor are called anonymous functions.
+
+<script type="text/javascript">
+<!--
+var func = new Function("x", "y", "return x*y;");
+function secondFunction(){
+	var result;
+	result = func(10,20); //wonderful way to call the function using a variable name !!!
+	document.write ( result );
+}
+//-->
+</script>
+</head>
+
+>> function literals
+
+var variablename = function(Argument List){
+Function Body
+};
+
+> events
+onclick onsubmit onmouseover onmouseout 
+
+See Pg. 87 for "HTML 5 Standard Events" section for complete list.
+
+> Cookies (client) -vs- session(server)
+
+Cookies are a plain text data record of 5 variable-length fields:
+? Expires: The date the cookie will expire. If this is blank, the cookie will expire when the visitor quits the browser.
+? Domain: The domain name of your site.
+? Path: The path to the directory or web page that set the cookie. This may be blank if you want to retrieve the cookie from any directory or page.
+? Secure: If this field contains the word "secure", then the cookie may only be retrieved with a secure server. If this field is blank, no such restriction exists.
+? Name=Value: Cookies are set and retrieved in the form of key-value pairs.
+
+>> Storing cookies:
+document.cookie = "key1=value1;key2=value2;expires=date";
+
+Note: Cookie values may not include semicolons, commas, or whitespace. 
+For this reason, you may want to use the JavaScript escape() function to encode the value "before storing it" in the cookie. 
+If you do this, you will also have to use the corresponding unescape() function when you "read the cookie value".
+
+Lot of cookie examples. skipped for later.
+
+> Page Redirection
+window.location="http://www.tutorialspoint.com";
+<input type="button" value="Redirect Me" onclick="Redirect();" />
+
+> Page Refresh (location.reload)
+<a href="javascript:location.reload(true)">Refresh Page</a>
+
+> Auto Refresh
+You can also use JavaScript to refresh the page automatically after a given time period. 
+Here setTimeout() is a built-in JavaScript function which can be used to execute another function after a given time interval.
+
+<html>
+<head>
+<script type="text/JavaScript">
+<!--
+function AutoRefresh( t ) {
+setTimeout("location.reload(true);", t);
+}
+// -->
+</script>
+</head>
+<body onload="JavaScript:AutoRefresh(5000);">
+<p>This page will refresh every 5 seconds.</p>
+</body>
+</html>
+
+
+> DIALOG BOX
+alert(), confirm() with OK and Cancel , prompt () with input box, OK and Cancel,  		
+
+> VOID Keyword
+void func()
+javascript:void func()
+-OR-
+void(func())
+javascript:void(func())
+The most common use of this operator is in a client-side javascript: URL, where it allows you to evaluate an expression for its side-effects without the browser displaying the value of the evaluated expression.
+
+no <script> tag.
+<body>
+<p>Click the following, This won't react at all...</p>
+<a href="javascript:void(document.write(“Hello : 0”))">Click me!</a>
+</body>
+
+Example 2 
+The following link does nothing because the expression "0" has no effect in JavaScript. Here the expression "0" is evaluated, but it is not loaded back into the current document.
+
+<body>
+<p>Click the following, This won't react at all...</p>
+<a href="javascript:void(0)">Click me!</a>
+</body> 
+
+Example 3 Another use of void is to purposely generate the undefined value as follows.
+
+<html>
+<head>
+<script type="text/javascript">
+<!--
+function getValue(){
+var a,b,c;
+a = void ( b = 5, c = 7 );
+document.write('a = ' + a + ' b = ' + b +' c = ' + c );
+}
+//-->
+</script>
+</head>
+<body>
+<p>Click the following to see the result:</p>
+<form>
+<input type="button" value="Click Me" onclick="getValue();" />
+</body>
+</html>
+		
+===Intermediate===
+
+JS Objects
+JavaScript is an Object Oriented Programming (OOP) language. A programming language can be called object-oriented if it provides four basic capabilities to developers:
+? Encapsulation: the capability to store related information, whether data or methods, together in an object.
+? Aggregation: the capability to store one object inside another object.
+? Inheritance: the capability of a class to rely upon another class (or number of classes) for some of its properties and methods.
+? Polymorphism: the capability to write one function or method that works in a variety of different ways.
+
+Object methods:-
+Methods are the functions that let the object do something or let something be done to it. 
+There is a small difference between a function and a method – at a function is a standalone unit of statements and a method is attached to an object and can be referenced by the this keyword.
+So, a method provides behaviour to the object. 
+
+
+var employee = new Object();
+var books = new Array("C++", "Perl", "Java");
+var day = new Date("August 15, 1947");
+
+//create an object: method1 
+<script type="text/javascript">
+var book = new Object(); // Create the object
+book.subject = "Perl"; // Assign properties to the object
+book.author = "Mohtashim";
+</script>
+
+//create an object with a user-defined function:method2
+<head>
+<title>User-defined objects</title> //Here this keyword is used to refer to the object that has been passed to a function.
+<script type="text/javascript">
+function book(title, author){
+	this.title = title;
+	this.author = author;
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+var myBook = new book("Perl", "Mohtashim");
+... 
+myBook.title
+myBook.author
+
+//The previous examples demonstrate how the constructor creates the object and assigns properties.
+//But we need to complete the definition of an object by assigning methods to it.
+//We had studied earlier that:-
+There is a small difference between a function and a method – at a function is a standalone unit of statements and a method is attached to an object and can be referenced by the this keyword.
+
+//Try the following example; it shows how to add a function along with an object.
+
+<html>
+<head>
+<title>User-defined objects</title>
+<script type="text/javascript">
+// Define a function which will work as a method
+function addPrice(amount){
+this.price = amount;
+}
+function book(title, author){
+this.title = title;
+this.author = author;
+this.addPrice = addPrice; // Assign that method as property.
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+var myBook = new book("Perl", "Mohtashim");
+myBook.addPrice(100);
+document.write("Book title is : " + myBook.title + "<br>");
+document.write("Book author is : " + myBook.author + "<br>");
+document.write("Book price is : " + myBook.price + "<br>");
+</script>
+</body>
+</html>
+
+--- Dont proceed if u have not understood the above ----
+
+> The ‘with’ keyword is used as a kind of shorthand for referencing an object's properties or methods.
+> The object specified as an argument to with becomes the default object for the duration of the block that follows. 
+The properties and methods for the object can be used without naming the object.
+
+with (object){
+properties used without the object name and dot
+}
+
+<head>
+<title>User-defined objects</title>
+<script type="text/javascript">
+// Define a function which will work as a method
+function addPrice(amount){
+with(this){
+price = amount;
+}
+}
+function book(title, author){
+this.title = title;
+this.author = author;
+this.price = 0;
+this.addPrice = addPrice; // Assign that method as property.
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+var myBook = new book("Perl", "Mohtashim");
+myBook.addPrice(100);
+document.write("Book title is : " + myBook.title + "<br>");
+document.write("Book author is : " + myBook.author + "<br>");
+document.write("Book price is : " + myBook.price + "<br>");
+</script>
+</body>
+
+> Number, NaN, number objects (skipped) pg. 130 
+> Boolean object. 
+var val = new Boolean(value);
+
+Properties of the boolean object:-
+- constructor
+- prototype
+
+
+
+
+====Advanced====
+
