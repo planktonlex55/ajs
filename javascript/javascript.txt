@@ -484,7 +484,75 @@ var val = new Boolean(value);
 
 Properties of the boolean object:-
 - constructor
+var bool = new Boolean( );
+document.write("bool.constructor() is : " + bool.constructor);
+
 - prototype
+when to use prototype ?
+suppose we forgot to declare "price" property in the function definiton (in the head section). 
+not to worry, in the body section we can still add price-property. so if book() is the function definition in the head section,
+and that did not have a price property, in the body we can write 
+book.prototype.price = null;
+See below:-
+
+<html>
+<head>
+<title>User-defined objects</title>
+<script type="text/javascript">
+function book(title, author){  //from where we create an object.
+	this.title = title;
+	this.author = author;
+	//no price-property was defined previously.
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+	var myBook = new book("Perl", "Mohtashim");
+	
+	book.prototype.price = null; //restructured the class definition, even though the object myBook was created.
+	myBook.price = 100; //wow, we can now call it using the object myBook.
+	
+	document.write("Book title is : " + myBook.title + "<br>");
+	document.write("Book author is : " + myBook.author + "<br>");
+	document.write("Book price is : " + myBook.price + "<br>");
+</script>
+</body>
+</html> 
+
+xxxx --- skipped --- xxxx
+Note:- we have to look into Number, String, Object, Boolean, etc. objects.
+skipped most. 
+loads of string methods.
+
+xxxx --- skipped --- xxxx
+
+>> Number obj creation:- 
+var val = new Number(<number>);
+In the place of number, if you provide any non-number argument, then the argument cannot be converted into a number, it returns NaN (Not-a-Number).
+where Number is the static object. 
+
+Number Object Properties:-
+MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, POSITIVE_INFINITY, prototype, constructor
+var val = Number.MAX_VALUE; 
+
+Constructor & Prototype property:-
+Note: Prototype is a global property which is available with almost all the objects.
+
+var num = new Number( 177.1234 );
+document.write("num.constructor() is : " + num.constructor);
+Output:-
+num.constructor() is : function Number() { [native code] }
+
+Number-methods:-
+toString(), valueOf(), toPrecision(), etc.
+
+>> Boolean obj creation:-
+
+ 
+
+
+
 
 
 
