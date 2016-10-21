@@ -1,9 +1,11 @@
+Open IDLE CLI + Python 35 (32-bit). Most of the code will be in later. We will use IDLE to only write multiline code.
+
 revision:-
 > numerical, float, string, long
-	==> int, float, str, bytearray(3), type(<varname>)
+	==> int, float, str, bytearray(3), type(<varname>), len(<datavar>)
 	
 > immutable data types: http://www.programiz.com/python-programming/tuple
-	>> tuples. -- data cannot be changed once assigned.
+	>> tuples. -- individual data cannot be changed once assigned. NOTE: But tuples can be emptied.  
 		- used for heterogeneous/different datatypes. (list is for similar/homogeneous datatypes 
 		- iterating thru a tuple is faster. It is slight advantage. 
 		- A tuple is created by placing all the items (elements) inside a parentheses (), separated by comma. The parentheses are optional but is a good practice to write it.
@@ -16,6 +18,13 @@ revision:-
 				 
 			 a = () #empty a tuple. works.
 			 
+			>> getting total number of indexes in a tuple
+					>>> len(a)
+					10
+					>>> maxindex = len(a) - 1
+					>>> maxindex
+					9
+			 
 			>> variable unpacking using tuples.
 			  a, b, c = (10, 3.14.6, 'who the hell r u')
 			  a,b,c = ("ten", (20,30,40), "string") 
@@ -23,15 +32,158 @@ revision:-
 			  a, b, c = (10,20), (30,40) #ValueError: not enough values to unpack (expected 3, got 2)
 			  
 			>> slicing a tuple:
-				1a) using +ve indexes (without steps):- 
+				1a) using +ve indexes (without steps, when 3rd param is not there, step is 1 by default):- 
 						>>> b=a[0:2]  #this means get indexes 0,1, but not 2. 
 						>>> b
 						(10, 20)
 						>>> c = a[0:3] #in prev. eg. index2 was not included, to include it, increment the 2nd param for index to 3 (even though index 3 i.e. 4th ele. does not exist)
+							Note: In fact, it can be any number >= lastindex+1. See eg. 2. in 1b)	
 						>>> c
 						(10, 20, 30)
 						
-				1b) using +ve indexes (with steps):-		
+				1b) using +ve indexes (with steps):-
+					Note: indexes r from 0 to 9 for tuple a
+				eg. 1
+						>>> a = (10,20,30,40,50,60,70,80,90,100)
+						>>> a
+						(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+						>>> b = a[0:10:2]
+						>>> b
+						(10, 30, 50, 70, 90)
+						>>> c = a[1:10:2]
+						>>> c
+						(20, 40, 60, 80, 100)
+				
+				eg. 2
+					Note: indexes r from 0 to 9 for tuple a.
+					In prev. eg. 2nd param was (9+1), in this eg. it is (9+2) and it still works fine. hell even u make 2nd param as 100, it still works.
+						>>> b = a[0:11:2]
+						>>> b
+						(10, 30, 50, 70, 90)
+						>>> a
+						(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+				
+				eg. 3
+					Q. wtf is step (param#3). lets try breaking it.
+					Note: if step is some silly # 2000, then it will try to include as many as possible.
+						  if step is -2, then it will create an empty array. 
+						  if step is None, then it will be example replica of the array (if 1st n 2nd param are proper)
+							Q. Wtf is None? 
+								A1. The python equivalent of NULL is called None.
+								A2. Empty tuple is not equivalent of None. Both are diff.
+						  if step is 0, ValueError: slice step cannot be zero	
+					
+						>>> b = a[0:100:2000]
+						>>> b
+						(10,)
+						>>> b = a[0:100:-2]
+						>>> b
+						()
 						
-				2a) using -ve indexes :-
+						>>> b = a[0:100:"somecrap"]
+						TypeError: slice indices must be integers or None or have an __index__ method
 						
+						>>> b = a[0:100:None]
+						>>> b
+						(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+						
+						>>> b = a[0:10:0]
+						Traceback (most recent call last):
+						  File "<stdin>", line 1, in <module>
+						ValueError: slice step cannot be zero
+				
+				PS C:\Python35-32> pip install ipython
+				This is because, it is not easy to write multi line code in IDLE CLI. So, lets try Ipython. 
+				Ipython is just for extra knowledge. skipped. Back to IDLE CLI.
+				Note: () belongs to class "tuple" and None belongs to "NoneType"
+			
+				C:/Python35-32/mypython/revision_daily/1_empty_vs_None.py
+						x = ()
+						if x :
+							print ("x is true")
+						else:
+							print ("x DOES NOT evaluate to true")
+							
+						y = None
+						if y:
+							print ("y is none and it evaluates to true")
+						else :
+							print ("y is none and it DOES NOT evaluate to true")
+
+						print (type(x))
+						print (type(y))
+
+						if x in y:
+							print ("x is in y")
+
+				Output:-
+				
+						===== RESTART: C:/Python35-32/mypython/revision_daily/1_empty_vs_None.py =====
+						x DOES NOT evaluate to true
+						y is none and it DOES NOT evaluate to true
+						<class 'tuple'>
+						<class 'NoneType'>
+						Traceback (most recent call last):
+						  File "C:/Python35-32/mypython/revision_daily/1_empty_vs_None.py", line 16, in <module>
+							if x in y:
+						TypeError: argument of type 'NoneType' is not iterable				
+							
+				2a) using -ve indexes :- (back to slicing tuple)
+					Note: if both params r negative, step is +ve/None, then resultant will be empty.
+						  if both params r negative, step is -0 (-ve zero), ValueError: slice step cannot be zero.
+						  if both params r negative, step is -ve, then resultant will be populated.
+						  
+						>>> b = a[-1:-10:1]
+						>>> b
+						()
+						>>> b = a[-1:-10]
+						>>> b
+						()
+						>>> a
+						(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+						>>> b = a[-1:-10:-2]
+						>>> a
+						(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+						>>> b
+						(100, 80, 60, 40, 20)
+						>>>
+						>>> b = a[-1:-10:None]
+						>>> b
+						()
+						>>> b = a[-1:-10:-1]
+						>>> b
+						(100, 90, 80, 70, 60, 50, 40, 30, 20)						
+						
+			Q. Teaser: Get 1st and last element of a tuple.
+				>>> b = a[0], a[-1]
+				>>> b
+				(10, 100)
+				Note: braces r purposefully skipped here. but it works. it is a good practice to put the parantheses.().
+			
+			Q. Teaser: How to reverse a tuple? 
+			In-place means that you should update the original string rather than creating a new one.
+			Reversal of tuples CANNOT be done "in-place". Instead, any of the below can be used.
+			
+			Sol1:-
+				>>> a[::-1]
+				(100, 90, 80, 70, 60, 50, 40, 30, 20, 10)
+				>>> a[::]
+				(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+				
+			Sol2:- 
+				We use reversed(a); Here we get an object, when we use reversed, so we will have to loop it
+				>>> [k for k in reversed(a)]
+					[100, 90, 80, 70, 60, 50, 40, 30, 20, 10]
+					
+			Q. Teaser: Remove Duplicates in a tuple. 
+			Tuples are immutable. So, duplicates cannot be removed in-place. a new tuple/data structure needs to be created.
+				=== Pending ===
+				>>> a = (10, 10, 20, 20, 30, 40)
+				>>> a
+				(10, 10, 20, 20, 30, 40)
+				>>> set(a)
+				{40, 10, 20, 30} #WTF is this? this is not a dict !!!
+				>>> [k for k in set(a)]
+				[40, 10, 20, 30]
+				
+				
