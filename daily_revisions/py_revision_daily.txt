@@ -1,0 +1,37 @@
+revision:-
+> numerical, float, string, long
+	==> int, float, str, bytearray(3), type(<varname>)
+	
+> immutable data types: http://www.programiz.com/python-programming/tuple
+	>> tuples. -- data cannot be changed once assigned.
+		- used for heterogeneous/different datatypes. (list is for similar/homogeneous datatypes 
+		- iterating thru a tuple is faster. It is slight advantage. 
+		- A tuple is created by placing all the items (elements) inside a parentheses (), separated by comma. The parentheses are optional but is a good practice to write it.
+		
+			 a = (10,20,30) 
+				#left-to-right == elements can be accessed as a[0], a[1], a[2]. Note a[-0] will give 10 
+						a[3] # does not exist. IndexError: tuple index out of range
+				#right-to-left == a[-1], a[-2], a[-3] . Note a[-0] will give 10.
+						a[-2.2]  #TypeError: tuple indices must be integers or slices, not float
+				 
+			 a = () #empty a tuple. works.
+			 
+			>> variable unpacking using tuples.
+			  a, b, c = (10, 3.14.6, 'who the hell r u')
+			  a,b,c = ("ten", (20,30,40), "string") 
+			  a, b, c = (10, 20, 30, 40, 50) #ValueError: too many values to unpacking
+			  a, b, c = (10,20), (30,40) #ValueError: not enough values to unpack (expected 3, got 2)
+			  
+			>> slicing a tuple:
+				1a) using +ve indexes (without steps):- 
+						>>> b=a[0:2]  #this means get indexes 0,1, but not 2. 
+						>>> b
+						(10, 20)
+						>>> c = a[0:3] #in prev. eg. index2 was not included, to include it, increment the 2nd param for index to 3 (even though index 3 i.e. 4th ele. does not exist)
+						>>> c
+						(10, 20, 30)
+						
+				1b) using +ve indexes (with steps):-		
+						
+				2a) using -ve indexes :-
+						
