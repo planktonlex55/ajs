@@ -3,12 +3,15 @@ Open IDLE CLI + Python 35 (32-bit). Most of the code will be in later. We will u
 revision:-
 > numerical, float, string, long
 	==> int, float, str, bytearray(3), type(<varname>), len(<datavar>)
+	==> set(a), reversed(a), list(set(a)), sorted(list(set(a)))  
+	==> a.append/extend/pop/remove/del/count/
 	
 > immutable data types: http://www.programiz.com/python-programming/tuple
 	>> tuples. -- individual data cannot be changed once assigned. NOTE: But tuples can be emptied.  
 		- used for heterogeneous/different datatypes. (list is for similar/homogeneous datatypes 
 		- iterating thru a tuple is faster. It is slight advantage. 
 		- A tuple is created by placing all the items (elements) inside a parentheses (), separated by comma. The parentheses are optional but is a good practice to write it.
+		- A tuple is of type: class 'tuple'
 		
 			 a = (10,20,30) 
 				#left-to-right == elements can be accessed as a[0], a[1], a[2]. Note a[-0] will give 10 
@@ -183,7 +186,146 @@ revision:-
 				(10, 10, 20, 20, 30, 40)
 				>>> set(a)
 				{40, 10, 20, 30} #WTF is this? this is not a dict !!!
+				
+				Sol1:-
 				>>> [k for k in set(a)]
 				[40, 10, 20, 30]
 				
+				Sol2:- list(set (a))
+				>>> list(set(a))
+				[40, 10, 20, 30]
 				
+				Sol3:-
+				>>> sorted(list(set(a)))
+				[10, 20, 30, 40]
+				
+> mutable data types:-
+	- use these to save memory problems cause by range, xrange, etc.
+	- identified with square braces []
+	- a list is of type : class 'list'; elements start from 0 onwards. len(a) to get number of elements in a list. len(a) - 1 to get the maxindex in a list. 
+	
+	>> sorting:-
+		Sol 1:- Not an in-place sorting.
+		>>> a = (222, 111, 999, 333, 444, 555, 777, 888, 666, 000)
+		>>> sorted(a)
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999]
+		
+		Sol 2:- In-place sorting. original array is modified.
+		>>> a
+		[222, 111, 999, 333, 444, 555, 777, 888, 666, 0]
+		>>> a.sort()
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999]
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999]
+		>>>
+	
+	>> changing more than one elements in a list
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999]
+		
+		Intention: Replace 111, 222 with oneoneone, twotwotwo
+		Note: 1,3 slice will include indexes 1 & 2 but not 3.
+		
+		>>> a[1,3] = ('oneoneone', 'twotwotwo') #error
+		TypeError: list indices must be integers or slices, not tuple
+		>>> a[1:3] = ('oneoneone', 'twotwotwo')
+		>>> a
+		[0, 'oneoneone', 'twotwotwo', 333, 444, 555, 666, 777, 888, 999]
+		
+		
+		If we had used the below, then 222 would not have been replaced.
+		
+		>>> a[1:2] = ('oneoneone', 'twotwotwo')
+		>>> a
+		[0, 'oneoneone', 'twotwotwo', 222, 333, 444, 555, 666, 777, 888, 999]
+		
+	>> reversing
+		in-place reversing:
+		>>> a.reverse()
+		>>> a
+		[999, 888, 777, 666, 555, 444, 333, 222, 111, 0]
+		
+	>> appending (in-place) -vs- extending
+	 appending:- here the entire list is at index 10.
+		>>> b = (0, 1, 2)
+		>>> a.append(b)
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999, (0, 1, 2)]
+
+ 	 extending:- here, all 3 elements of b have 3 unique indexes in a.
+	 
+		>>> a
+		[10, 20, 30, 40, 50, 60, 70, 80]
+		>>> b = (1.1, 2.2, 3.3)
+		>>> a
+		[10, 20, 30, 40, 50, 60, 70, 80]
+		>>> b
+		(1.1, 2.2, 3.3)
+		>>> a.extend(b)
+		>>> a
+		[10, 20, 30, 40, 50, 60, 70, 80, 1.1, 2.2, 3.3]
+		>>>	
+		
+	>> removing last element (in-place)
+		>>> a.pop(10)
+		(0, 1, 2)
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999]	
+		
+	Note : we cannot do a.pop(b) as it gives TypeError: 'tuple' object cannot be interpreted as an integer. It takes only 1 integer, so it cannot take slices/lists.
+	So to remove 3 elements, u will have to iterate and remove them. 
+	- pop() Removes and returns last object or obj from list. It also returns. So it is different from remove(), which does NOT return what was removed.
+	- pop() works on index, whereas remove works on value in the list, so remove() checks for membership in the list. if element is not found, remove() call throws this error:
+		ValueError: list.remove(x): x not in list
+	- both take exactly one argument. 
+	- since remove() takes only one argument, what if we wanted to delete more than one value/a slice? for that we use del().
+		eg. >>> a = [10,20,30,40,50,60,70]
+			>>> a
+			[10, 20, 30, 40, 50, 60, 70]
+			>>> del(a[5:7])
+			>>> a
+			[10, 20, 30, 40, 50]
+
+	>> count how many times an element occurs in a list.
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999, (0, 1, 2)]
+		>>> a.append((0, 1, 2))
+		>>> a
+		[0, 111, 222, 333, 444, 555, 666, 777, 888, 999, (0, 1, 2), (0, 1, 2)]
+		>>> a.count((0,1,2))
+		2	
+		
+	>> empty a list + mark a list as None
+		>>> a = []
+		>>> a
+		[]
+		>>> a = None
+		>>> a
+		>>> type(a)
+		<class 'NoneType'>
+		>>>
+	
+	>> delete elements 
+		use del() for deleting slices; use remove(<onevalueonly>) for deleting-by-value in the list; pop(<onevalueonly>) by deleting-by-index
+		
+	>> get index where an obj is.
+		use a.index(<obj>)
+			>>> a
+			[10, 20, 30, 40, 50]
+			>>> b = (60, 70)
+			>>> a.append(b)
+			>>> a
+			[10, 20, 30, 40, 50, (60, 70)]
+			>>> a.index(b)
+			5
+			
+	>> insert an obj into a particular location.
+		a.insert(<index>, <obj>)
+			>>> a.insert(0,b)
+			>>> a
+			[(60, 70), 10, 20, 30, 40, 50, (60, 70)]
+			>>>			
+		
+	>> remove duplicates 	
+		
