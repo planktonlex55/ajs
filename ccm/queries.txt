@@ -1,0 +1,53 @@
+mysql -h 127.0.0.1 -u root (works)
+	mysqladmin -u root -p create CCM (not working as password is blank)
+	
+create database ccm; (works)
+show databases;
+connect ccm;
+show tables;
+
+===skip===
+CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+create table test 	
+create table testblob (
+    image_id        tinyint(3)  not null default '0',
+    image_type      varchar(25) not null default '',
+    image           blob        not null,
+    image_size      varchar(25) not null default '',
+    image_ctgy      varchar(25) not null default '',
+    image_name      varchar(50) not null default ''
+);
+
+===skip===
+For workbench:- (tested)
+http://stackoverflow.com/questions/2168969/how-to-connect-xampp-mysql-local-db-using-jdbc
+http://dev.mysql.com/downloads/workbench/
+
+mysql ships with a blank password for root.
+so, when connecting with workbench, it keeps failing.
+
+> stop mysql on xampp
+> Create a file C:\xampp\mysql\mysql-init.txt with below content
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root123');
+> click shell on the xampp panel.
+> mysqld --defaults-file="C:\xampp\mysql\bin\my.ini" --init-file="C:\\xampp\\mysql\\mysql-init.txt"
+when u run this command on shell, even xampp control panel shows that the db is running on 3306. 
+> open workbench and now try to connect using "test connection" with the new password "root123" and it works !!!
+under schemas, u can see the ccm-db which we create (and also phpmyadmin, when we had installed php; but that irrelevant now)
+> note: do not close the shell in which u ran the mysqld command else, it will not connect.
+> u can open multiple xampp-shells .
+
+For squirrel:- (untested)
+'jdbc:mysql://localhost:3306/mydb'
+'jdbc:mysql://127.0.0.1:3306/ccm'
+https://sourceforge.net/p/squirrel-sql/mailman/message/26580414/
+http://dev.mysql.com/downloads/connector/j/ 
+
+
+== rough ==
+
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root123');
+C:\xampp\mysql\mysql-init.txt
+mysqld --init-file=C:\\xampp\\mysql\\mysql-init.txt
+mysqld --defaults-file="C:\xampp\mysql\bin\my.ini" --init-file="C:\\xampp\\mysql\\mysql-init.txt"
+

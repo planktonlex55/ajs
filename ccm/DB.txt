@@ -1,0 +1,172 @@
+>>> users 
+- uid PK NOT NULL ( ID of the usertype) i,e, PROVID -or- MRN
+- username NOT NULL 
+- password NOT NULL (encrypted with salt)
+- creation_date NOT NULL 
+- usertype (provider, -or- patient) 
+- PRACTID NULL , if usertype = patient
+
+
+>>> practice/hospital
+- PRACTID (PK) NOT NULL
+- ccm_registration_date NOT NULL
+- address NOT NULL
+- city NOT NULL
+- zipcode NOT NULL 
+- email1 NOT NULL
+- email2 NULL
+- phone1 NOT NULL
+- phone2 NULL
+- services NOT NULL
+- status NOT NULL (active/inactive)
+
+>>> provider/doctor
+- PROVID (PK) NOT NULL
+- NPI (NOT NULL)
+- subscribed_to_ccm (Y/N) NOT NULL
+- ccm_registration_date NOT NULL
+- ccm_expiry NOT NULL (timestamp)
+- department NOT NULL
+- nameprefix NOT NULL
+- firstname NOT NULL
+- middlename NULL
+- lastname NOT NULL
+- namesuffix NULL
+- medical_degrees NOT NULL
+- sex NOT NULL
+- address1 NOT NULL
+- address2 NULL
+- zipcode NOT NULL
+- country NOT NULL
+- email1 NOT NULL
+- email2 NULL
+- phone1 NOT NULL
+- phone2 NULL 
+- status NOT NULL (active/inactive)
+- services NOT NULL 
+
+>>> patient
+- nextmrn(sequence)
+- MRN (PK) NOT NULL
+- PRACTID (FK) NOT NULL
+- PROVID (FK) NOT NULL
+- SSN NULL 
+- ACA_status NOT NULL
+- ACA_enroll_date NOT NULL
+- ACA_coverage_expiry NOT NULL 
+- ACA_plan_name NULL
+- subscribed_to_ccm (Y/N) NOT NULL
+- ccm_registration_date NOT NULL
+- ccm_status NOT NULL (enrolled/new). how to determine new?? 
+- ccm_expiry NOT NULL
+- employed (Y/N) NOT NULL
+- employer_insurance(Y/N) NOT NULL
+- name_prefix NOT NULL
+- firstname NOT NULL
+- middlename NULL
+- lastname NOT NULL
+- name_suffix NULL 
+- sex NOT NULL
+- DOB NOT NULL
+- marital_status NOT NULL (married,single)
+- nationality NOT NULL
+- unit (?)
+- address1 NOT NULL
+- address2 NULL
+- zipcode NOT NULL
+- country NOT NULL
+- phone1 NOT NULL
+- phone2 NULL
+- email1 NOT NULL
+- email2 NULL 
+- primary_lang NOT NULL
+- secondary_lang NULL
+- ethnicity NOT NULL (black, african, asian, hispanic, latino, other)
+- religion NULL
+- children NULL
+- DCR (?) NOT NULL
+- weight NOT NULL
+- height NOT NULL
+- blood_group NOT NULL 
+
+>>> patient history
+- MRN (FK) NOT NULL
+- PRACTID (FK) NOT NULL 
+- chronic_illness NOT NULL 
+- emergency_contact NOT NULL
+- previous_illnesses NULL
+- previous_surgeries NULL
+- previous_allergies NULL
+- existing_illness NULL
+- existing_allergies NULL
+- current_medication NULL
+- previous_appt_date NULL (timestamp)
+- previous_provid (some PROVID)
+- previous_practid (some practid)
+- admission_date
+- discharge_date
+
+>>> message
+- message_id (PK) NOT NULL
+- PROVID (FK) -- doctor NOT NULL
+- MRN (FK) -- patient NOT NULL
+- PRACTID (FK) NOT NULL
+- description NOT NULL
+- timestamp NOT NULL
+- unread_msgs (rest-api should maintain this -or- move this to BL ) NOT NULL default 0
+- total_msgs (rest-api should maintain this -or- move this to BL ) NOT NULL default 1
+- new_msgs (last 24 hrs) NOT NULL default 0
+- attachments NULL 
+
+>>> message_archive
+(same as "messages")
+
+>>> medical_notes
+- noteid (PK)
+- PROVID (FK)
+- MRN (FK)
+- PRACTID (FK)
+- msgid (FK)
+- timerid (FK)
+- description
+- timestamp
+- loggedtime
+- proof_attached (blob types)
+- unread_notes (rest-api should maintain this -or- move this to BL )
+- total_notes (rest-api should maintain this -or- move this to BL )
+- new_notes (rest-api should maintain this -or- move this to BL )
+- admin_approval (?) (whose going to review the proofs attached?)
+
+>>> medical_notes_archive
+(same as "medical_notes")
+
+>>> timer
+- timerid(PK)
+- PROVID (FK)
+- MRN (FK)
+- PRACTID (FK)
+- time_logged 
+- last_modified
+- begin_timestamp
+- end_timestamp
+- paused_timestamp
+- resume_timestamp
+- reset_timestamp (action cannot be undone)
+
+>> report
+- Report_id (PK)
+- PROVID (FK)
+- MRN (FK)
+- PRACTID (FK)
+- csv_path
+- pdf_path
+
+
+timerJS:-
+http://jsfiddle.net/df773p9m/4/   (oldway)
+https://siddii.github.io/angular-timer/ (ng way) 
+	- checkout Progressbar Timer 
+
+	
+	
+	
