@@ -1,0 +1,103 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="/z_radical/z_ccm/bourbon_ccm_testproj_1/css/angular-material.min.css">
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="/z_radical/z_ccm/bourbon_ccm_testproj_1/js/angular.min.js"></script>
+  <script src="/z_radical/z_ccm/bourbon_ccm_testproj_1/js/angular-animate.min.js"></script>
+  <script src="/z_radical/z_ccm/bourbon_ccm_testproj_1/js/angular-aria.min.js"></script>
+  <script src="/z_radical/z_ccm/bourbon_ccm_testproj_1/js/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="/z_radical/z_ccm/bourbon_ccm_testproj_1/js/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    angular.module('ccmPatientRegistration', ['ngMaterial', 'ngMessages']);
+  </script>
+<!-- z_radical\z_ccm\bourbon_ccm_testproj_1 -->
+
+</head>
+ <body ng-app="ccmPatientRegistration" > 
+ <form name="ccmPatientForm"> 
+<div>
+ <!-- title -->
+		<md-input-container>
+			<label>Title: </label>
+			<input type = "text" name="userTitle" ng-model="title" required ng-minlength="2" ng-maxlength="5">			
+      			<div ng-messages = "ccmPatientForm.userTitle.$dirty && ccmPatientForm.userTitle.$error" >
+      				<div ng-message="required">Title is required.</div>
+      				<div ng-message="minlength">Minimum length is 2 chars.</div>
+      				<div ng-message="maxlength">Maximum length is 5 chars.</div>
+      			</div> 
+		</md-input-container>
+    <!-- firstName -->
+    <md-input-container>
+      <label>FirstName: </label>
+      <input type = "text" name="userFirstName" ng-model="firstName" required ng-minlength="2" ng-maxlength="100">      
+            <div ng-messages = "ccmPatientForm.userFirstName.$dirty && ccmPatientForm.userFirstName.$error" >
+              <div ng-message="required">First Name is required.</div>
+              <div ng-message="minlength">Minimum length is 2 chars.</div>
+              <div ng-message="maxlength">Maximum length is 100 chars.</div>
+            </div> 
+    </md-input-container>
+    <!-- middleName -->
+    <md-input-container>
+      <label>MiddleName: </label>
+      <input type = "text" name="userMiddleName" ng-model="middleName" ng-minlength="2" ng-maxlength="100">      
+            <div ng-messages = "ccmPatientForm.userMiddleName.$dirty && ccmPatientForm.userMiddleName.$error" >
+              <div ng-message="minlength">Minimum length is 2 chars.</div>
+              <div ng-message="maxlength">Maximum length is 100 chars.</div>
+            </div> 
+    </md-input-container>
+    <!-- lastName -->
+    <md-input-container>
+      <label>LastName: </label>
+      <input type = "text" name="userLastName" ng-model="lastName" required ng-minlength="2" ng-maxlength="100">      
+            <div ng-messages = "ccmPatientForm.userLastName.$dirty && ccmPatientForm.userLastName.$error" >
+              <div ng-message="required">Last Name is required.</div> 
+              <div ng-message="minlength">Minimum length is 2 chars.</div>
+              <div ng-message="maxlength">Maximum length is 100 chars.</div>
+            </div> 
+    </md-input-container>
+    <!-- suffix -->
+    <md-input-container>
+      <label>Suffix: </label>
+      <input type = "text" name="userSuffix" ng-model="suffix" ng-minlength="2" ng-maxlength="10">      
+            <div ng-messages = "ccmPatientForm.userSuffix.$dirty && ccmPatientForm.userSuffix.$error" >
+              <div ng-message="minlength">Minimum length is 2 chars.</div>
+              <div ng-message="maxlength">Maximum length is 10 chars.</div>
+            </div> 
+    </md-input-container>
+	<br/>
+	<!-- email -->
+    <md-input-container>
+      <label>Email: </label>
+      <input type = "text" name="userEmail" ng-model="email" ng-pattern="/^[a-zA-Z0-9_]+[\.]?[a-zA-Z0-9_]*\@[a-zA-Z0-9]+\.[a-zA-Z0-9_]+[\.]?[a-zA-Z0-9_]*$/" required ng-minlength="4" ng-maxlength="50" >      
+            <div ng-messages = "ccmPatientForm.userEmail.$dirty && ccmPatientForm.userEmail.$error" >
+			  <div ng-message="required"> Email is required.</div>
+              <div ng-message="minlength">Minimum length is 6 chars.</div>
+              <div ng-message="maxlength">Maximum length is 50 chars.</div>
+			  <div ng-message="pattern"> Email format is not correct.</div>
+            </div> 
+    </md-input-container>
+	<!-- Phone -->
+	<md-input-container>
+      <label>Phone: </label>
+      <input type = "text" name="userPhone" ng-model="phone" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required ng-minlength="4" ng-maxlength="50"> 
+            <div ng-messages = "ccmPatientForm.userPhone.$dirty && ccmPatientForm.userPhone.$error" >
+			  <div ng-message="required"> Phone # is required.</div>
+			  <div ng-message="pattern"> Phone format is not correct.</div>
+              <div ng-message="minlength">Minimum length is 10 chars.</div>
+              <div ng-message="maxlength">Maximum length is 20 chars.</div>
+            </div> 
+    </md-input-container>	
+
+</div>
+
+</form>  
+</body>
+</html>
