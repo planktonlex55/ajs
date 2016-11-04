@@ -1,0 +1,70 @@
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/z_radical/z_ccm/training/assignment1/css/z.css">
+	<script src = "/z_radical/z_ccm/training/assignment1/js/z.js"></script>
+</head>
+
+<body>
+<form name="myForm" onsubmit="savePhone(phoneType, phoneName, phoneModel, phoneProcessor, phoneRam, phoneMemory, touchScreen, capacitive)">
+<table width = "300px">
+<tr>
+<td><label>Phone type:</label></td>
+<td><select id="phoneType">
+		<option value="smartphone" selected>smartphone</option>
+		<option value="non_smartphone">non_smartphone</option>
+	</select></td>
+</tr>
+
+<tr>
+<td><label>Name:</label></td>
+<td><input type="text" id = "phoneName" /></td>
+</tr>
+
+<tr>
+<td><label>Model #:</label></td>
+<td><input type="text" id = "phoneModel" /></td>
+</tr>
+
+<tr>
+<td><label>Processor:</label></td>
+<td><input type="text" id = "phoneProcessor" /></td>
+</tr>
+
+<tr>
+<td><label>Ram:</label></td>
+<td><input type="text" id="phoneRam"/></td>
+</tr>
+
+<tr>
+<td><label>Memory:</label></td>
+<td><input type="text" id = "phoneMemory" /></td>
+</tr>
+
+<tr>
+<td><label>Touch Screen:</label></td>
+<td><select id="touchScreen">
+		<option value="touchScreenYes" selected>Yes</option>
+		<option value="touchScreenNo" >No</option>
+	</select>
+	</td>
+</tr>
+
+<tr>
+	<td><label>Capacitive:</label></td>
+	<td><select id="capacitive">
+		<option value="capacitiveYes" selected>Yes</option>
+		<option value="capacitiveNo">No</option>
+	</select>
+	</td>
+</tr>
+<tr><td><input type="submit" ></input></td></tr>
+<tr><td><input type="button" value ="List All Phones" onclick="listAllPhones()"/></td></tr>
+
+</table>
+
+<div id="wrapper"></div>
+
+</form>
+</body>
+</html>
