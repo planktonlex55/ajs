@@ -1,0 +1,184 @@
+http://codepen.io/vinnybod/pen/eBmeer
+
+//html
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div ng-app="exampleApp6" ng-controller="ExampleController6" layout-margin>
+  <md-card style="margin:0px">
+            <md-input-container style="margin:15px;">
+                <label>Filter by search</label>
+                <input type="text" ng-model="filterName">
+            </md-input-container>
+
+            <div ng-hide="true">
+                {{(filteredItems = (nutritionList | filter: filterName))}}
+            </div>
+        </md-card>
+  <mdt-table mdt-row="{
+                      'data': filteredItems,
+                      'table-row-id-key': 'id',
+                      'column-keys': ['name', 'calories', 'fat', 'carbs', 'protein', 'sodium', 'calcium', 'iron', 'customcell']
+                      }">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Dessert (100g serving)</mdt-column>
+      <mdt-column align-rule="right">Calories</mdt-column>
+      <mdt-column align-rule="right">Fat (g)</mdt-column>
+      <mdt-column align-rule="right">Carbs (g)</mdt-column>
+      <mdt-column align-rule="right">Protein (g)</mdt-column>
+      <mdt-column align-rule="right">Sodium (mg)</mdt-column>
+      <mdt-column align-rule="right">Calcium (%)</mdt-column>
+      <mdt-column align-rule="right">Iron (%)</mdt-column>
+      <mdt-column align-rule="right">Custom Cell</mdt-column>
+    </mdt-header-row>
+        <mdt-custom-cell column-key="customcell" html-content="true">
+        <mdt-custom-cell-button ng-click="clientScope.showRowId(rowId)">Test</md-button>
+      </mdt-custom-cell>
+  </mdt-table>
+</div>
+
+//css
+
+html, body{
+  background: #DDDDDD;
+}
+
+
+//js
+
+(function(){
+    'use strict';
+
+    angular
+      .module('exampleApp6', ['ngMaterial', 'mdDataTable'])
+      .directive('mdtCustomCellButton', function () {
+  return {
+    template: '<md-button class="md-icon-button"><md-icon md-font-set="material-icons">assignment_turned_in</md-icon></md-button>',
+  };
+});
+
+    angular.module('exampleApp6').controller('ExampleController6', function($scope, $mdToast, $mdDialog){
+
+      $scope.showRowId = function(rowId) {
+        $mdDialog.show(
+          $mdDialog.alert()
+          .clickOutsideToClose(true)
+          .textContent(rowId)
+          .ariaLabel('Alert Dialog Demo')
+          .ok('Got it!')
+       )
+      };
+      
+        $scope.nutritionList = [
+            {
+                id: 601,
+                name: 'Frozen joghurt',
+                calories: 159,
+                fat: 6.0,
+                carbs: 24,
+                protein: 4.0,
+                sodium: 87,
+                calcium: '14%',
+                iron: '1%'
+            },
+            {
+                id: 602,
+                name: 'Ice cream sandwitch',
+                calories: 237,
+                fat: 9.0,
+                carbs: 37,
+                protein: 4.3,
+                sodium: 129,
+                calcium: '84%',
+                iron: '1%'
+            },
+            {
+                id: 603,
+                name: 'Eclair',
+                calories: 262,
+                fat: 16.0,
+                carbs: 24,
+                protein: 6.0,
+                sodium: 337,
+                calcium: '6%',
+                iron: '7%'
+            },
+            {
+                id: 604,
+                name: 'Cupkake',
+                calories: 305,
+                fat: 3.7,
+                carbs: 67,
+                protein: 4.3,
+                sodium: 413,
+                calcium: '3%',
+                iron: '8%'
+            },
+            {
+                id: 605,
+                name: 'Gingerbread',
+                calories: 356,
+                fat: 16.0,
+                carbs: 49,
+                protein: 2.9,
+                sodium: 327,
+                calcium: '7%',
+                iron: '16%'
+            },
+            {
+                id: 606,
+                name: 'Jelly bean',
+                calories: 375,
+                fat: 0.0,
+                carbs: 94,
+                protein: 0.0,
+                sodium: 50,
+                calcium: '0%',
+                iron: '0%'
+            },
+            {
+                id: 607,
+                name: 'Lollipop',
+                calories: 392,
+                fat: 0.2,
+                carbs: 98,
+                protein: 0,
+                sodium: 38,
+                calcium: '0%',
+                iron: '2%'
+            },
+            {
+                id: 608,
+                name: 'Honeycomb',
+                calories: 408,
+                fat: 3.2,
+                carbs: 87,
+                protein: 6.5,
+                sodium: 562,
+                calcium: '0%',
+                iron: '45%'
+            },
+            {
+                id: 609,
+                name: 'Donut',
+                calories: 452,
+                fat: 25.0,
+                carbs: 51,
+                protein: 4.9,
+                sodium: 326,
+                calcium: '2%',
+                iron: '22%'
+            },
+            {
+                id: 610,
+                name: 'KitKat',
+                calories: 518,
+                fat: 26.0,
+                carbs: 65,
+                protein: 7,
+                sodium: 54,
+                calcium: '12%',
+                iron: '6%'
+            }
+        ];
+    });
+}());
