@@ -1,3 +1,5 @@
+// http://plnkr.co/edit/uFhMPuajxL9kTHDo1nS4?p=preview
+
 //object manipulation.
 //everything in JS is a fckung obj. like python.
 
