@@ -1,0 +1,283 @@
+1. Directive attr "restrict"
+restrict: A , E , AE
+E = Element. Use an element when you are creating a component that is in control of the template. 
+A = Attribute. Use an attribute when you are decorating an existing element with new functionality.
+C = Class. 
+M = comment.
+Type :  Usage
+A = <div Doc></div>
+C = <div class="Doc"></div>
+E = <Doc data="book_data"></Doc>
+M = <!--directive:Doc -->
+By default the value is EA, meaning that both Element names and attribute names can invoke the directive.
+
+
+2. transclude: 
+Consider a directive called myDirective in an element, and that element is enclosing some other content, let's say:
+<div my-directive>	
+    <button>some button</button>
+    <a href="#">and a link</a>
+</div>
+If myDirective is using a template, you'll see that the content of <div my-directive> will be replaced by your directive template. So having:
+app.directive('myDirective', function(){
+    return{
+        template: '<div class="something"> This is my directive content</div>'
+    }
+});
+will result in this render:
+<div class="something"> This is my directive content</div> 
+Note: button and <a href... > is gone and replaced by the inner content of the directive.
+
+
+3. replace:
+When you have replace: true you get the following piece of DOM:
+eg.1
+<div ng-controller="Ctrl" class="ng-scope">
+    <div class="ng-binding">hello</div>
+</div>
+Whereas with replace: false you get this:
+<div ng-controller="Ctrl" class="ng-scope">
+    <my-dir>
+        <div class="ng-binding">hello</div>
+    </my-dir>
+</div>
+
+eg.2
+For example without replace:true
+<div myd1><span class="replaced" myd1="">directive template1</span></div>
+and with replace:true
+<span class="replaced" myd1="">directive template1</span>
+As you can see in the latter example, the div tag is indeed replaced. TAG DELETION !!!
+
+compile -vs- link -vs- controller
+http://stackoverflow.com/questions/15676614/angularjs-link-vs-compile-vs-controller
+
+4. compile:
+http://stackoverflow.com/questions/15676614/angularjs-link-vs-compile-vs-controller
+This is the phase where Angular actually compiles your directive. This compile function is called just once for each references to the given directive.
+compile also have pre: and post:
+pre: function(scope, element, attributes, controller, transcludeFn){
+},
+post: function(scope, element, attributes, controller, transcludeFn){
+}
+
+5. link:
+The linking phase is where you attach the data ( $scope ) to the linking function and it should return you the linked html.
+This is the function where you want to make changes to the linked html, i.e the html that already has the data attached to it.
+
+pre-link function eg. pre: function(){..}
+post-link function eg. post: function(){..}
+When we dont specify it, it is POST by default. For pre, we have to explicitly mention it.
+
+6. controller 
+The controller is a place where you put in some directive specific logic. 
+This logic can go into the linking function as well, but then you would have to put that logic on the scope to make it "shareable".
+
+So what is the alternative if two Directives want to talk to each other / co-operate with each other? 
+	Ofcourse you could put all that logic into a service and then make both these directives depend on that service but that just brings in one more dependency.
+	The alternative is to provide a Controller for this scope ( usually isolate scope ? ) and then this controller is injected into another directive when that directive "requires" the other one.
+	
+So, write code in (directive's) controller is you want to share that code.	
+
+http://stackoverflow.com/questions/15676614/angularjs-link-vs-compile-vs-controller
+controller: The directive controller can be passed to another directive linking/compiling phase. 
+It can be injected into other directices as a mean to use in inter-directive communication.
+You have to specify the name of the directive to be required – It should be bound to same element or its parent. The name can be prefixed with:
+? – Will not raise any error if a mentioned directive does not exist.
+^ – Will look for the directive on parent elements, if not available on the same element.
+
+eg. In below code, see how the controller is defined for the parent element and just reused in the child element's link function.
+No controller is mentioned again for the children.
+
+var app = angular.module('app', []);
+app.controller('MainCtrl', function($scope, $element) {
+});
+app.directive('parentDirective', function() {
+  return {
+    restrict: 'E',
+    template: '<child-directive></child-directive>',
+    controller: function($scope, $element){
+      this.variable = "Hi Vinothbabu"
+    }
+  }
+});
+
+app.directive('childDirective', function() {
+  return {
+    restrict:  'E',
+    template: '<h1>I am child</h1>',
+    replace: true,
+    require: '^parentDirective',
+    link: function($scope, $element, attr, parentDirectCtrl){
+      //you now have access to parentDirectCtrl.variable
+    }
+  }
+});
+
+controller -vs- link : when to use what ?
+
+NOTE:- It is better to use a controller instead of link because we can inject many stuff into a PARENT's controller function.
+Also, for a controller, the order of injection is not important. 
+So, u can insert a service, factory, etc. in any order;
+
+In comparison, a link function can only take params in a particular order.
+Note, u can still do injection in directions at this line : .directive ('x', function($http, $scope){ ... } ), but here we are talking about controller -vs- link 
+
+6. scope: // it should be calle directive-scope. 
+https://www.undefinednull.com/2014/02/11/mastering-the-scope-of-a-directive-in-angularjs/
+
+It can have these values: false, true, {}
+
+false: any changes are reflected in the parent scope(?)
+true: directive gets a new scope.
+scope: false,
+	the controller Ctrl1 and directive are using the same scope object. This means any changes to the controller or directive will be in sync.
+scope: true, 
+	AngularJS will create a new scope by inheriting parent scope ( usually controller scope, otherwise the application’s rootScope ).
+	Any changes made to this new scope will NOT reflect back to the parent scope. 
+	However, since the new scope is inherited from the parent scope, any changes made in the Ctrl1 ( the parent scope ) will be reflected in the directive scope.
+	(one-way changes from the controller to the directive is scope = true.)
+scope: {} (called isolated scope)	VIMP!!!
+	This time, there will be a new scope created for the directive, but it will NOT be inherited from the parent scope. 	
+	It’ll make sure that our directive is generic, and placed anywhere inside the application. Parent scope is not going to interfere with the directive scope.
+	Though it’s called as an Isolated scope, AngularJS allows to communicate with the parent scope using some special symbols knows as prefixes
+	
+		To access any parent scope data, we need to pass that to our directive explicitly. (use DDO)
+		Using DDO, Imagine these properties as interfaces of the directive to communicate with outside scope.
+		
+		NOTE:- in isolated scope, we are talking about interaction/exchangind data between the parent controller Ctrl1/MainCtrl and the directive.
+			where MainCtrl creates the parent scope .
+		Lets say MainCtrl has:-
+			name = "Harry"
+			color =  "#333333"
+			reverseName = function for reversing the name
+			randomColor = function for generating random color code	
+			
+			and 
+			
+			HTML :-		
+				<div my-directive  class="directive" name="{{name}}"  reverse="reverseName()"  color="color" >	</div>
+			
+		In directive-scope, we have :-
+			scope: {
+				name: "@",
+				color: "=",
+				reverse: "&"
+			}
+		Note:- mostly the template and link functions (in a directive) consume the directive-scope.
+					
+			1. "@"   (  Text binding / one-way binding )
+			2. "="   ( Direct model binding / two-way binding )
+			3. "&"   ( Behaviour binding / Method binding  )			
+
+	VIMP:
+	When the directive encounters a prefix in the scope property, it will look for an attribute ( with same property name ) on directive’s html element.		
+	eg.1
+			scope : {
+				name: "@"
+			}	//looks for an attribute "name" in the (html ?) directive.
+			
+	eg.2
+			scope : {
+				name: "@parentName"
+			} //looks for an attribute "parent-name" in the html element to get its value. VIMP VIMP!!!
+The “@” prefix is a one-way binding between the directive scope and parent scope. 
+It always expects the mapped attribute to be an expression. 
+This is very important; because to make the “@” prefix work, we need to wrap the attribute value inside {{}}
+So, in our html, it is:  name="{{name}}" 
+<div class="directive" my-directive	name="{{name}}"	color="color" reverse="reverseName()"></div>	
+
+= 
+ It’ll always expect the attribute value to be the model name. 
+ That means you CANNOT provide an expression as the value of attribute mapped to “=” prefix. 
+This is useful, when any of our directive scope property to be same as the parent scope property. 
+
+&
+This is used to bind any methods from the parent scope to the directive scope
+Parent scope has a method called “reverseName”.
+	 Through our “&” prefix, we bound the “reverseName” method to a scope property named “reverse”. 
+	 So whenever the “reverse()” method is executed inside the directive, it’ll basically invoke the “reverseName” in the parent scope.
+eg.1
+
+ var app = angular.module("app", []);
+ app.controller("MainCtrl", function( $scope ){
+    $scope.name = "Harry";
+    $scope.color = "#333333";
+    $scope.reverseName = function(){
+     $scope.name = $scope.name.split("").reverse().join("");
+    };
+    $scope.randomColor = function(){
+        $scope.color = '#'+Math.floor(Math.random()*16777215).toString(16);
+    };
+});
+app.directive("myDirective", function(){
+    return {
+        restrict: "EA",
+        scope: {
+            name: "@",	//since @, it expects expr. so use name = {{name}} in ur html
+            color: "=",	//since =, we CANNOT use an expr. like @. we have to use the same name as in the MainCtrl-scope. so use color="color" in HTML.
+            reverse: "&"	//for &, LHS is the name we will be using in directive; so LHS is used in template, where ng-click=reverse().
+							//in HTML, the mapping will be reverse = reverseName() i.e. LHS of the directive-scope-method = controller/parent-scope-method().
+        },	
+		//VIMP:
+		//so, whatever we declare in scope, we will be using that in the directive-template or in the directive-link function.
+		//LHS in the isolated-scopes are the attributes/values/methods which are shared with the parent-scope/MainCtrl-scope.
+        template: [
+            "<div class='line'>",
+            "Name : <strong></strong>;  Change name:<input type='text' ng-model='name' /><br/>",
+            "</div><div class='line'>",
+            "Color : <strong style='color:'></strong>;  Change color:<input type='text' ng-model='color' /><br/></div>",
+            "<br/><input type='button' ng-click='reverse()' value='Reverse Name'/>"
+        ].join("")    
+    };
+});
+
+HTML:-
+<div class="directive" my-directive
+   name="{{name}}"
+   color="color"
+   reverse="reverseName()"
+></div>	
+
+	
+			
+			
+			
+			
+			
+7. template: 
+https://www.undefinednull.com/2014/02/11/mastering-the-scope-of-a-directive-in-angularjs/
+
+{{name}} in a template means there is a $scope.name in the controller.
+Also note (on a diff. topic): ng-click="somefunc()" means that function is in $scope.somefunc();
+
+eg.1.
+JS:-
+var app = angular.module("test",[]);
+
+app.controller("Ctrl1",function($scope){
+    $scope.name = "Harry";
+    $scope.reverseName = function(){
+        $scope.name = $scope.name.split('').reverse().join('');
+    };
+});
+app.directive("myDirective", function(){
+    return {
+        restrict: "EA",
+        scope: false,
+        template: "<div>Your name is : {{name}}</div>"+
+        "Change your name : <input type='text' ng-model='name' />"
+    };
+});
+
+HTML:-
+<div ng-app="test">
+    <div ng-controller="Ctrl1">
+        <h2 ng-click="reverseName()">Hey {{name}}, Click me to reverse your name</h2>
+        <div my-directive class='directive'></div>
+    </div>
+</div>
+
+ 
+7. controllerAs: 
+
